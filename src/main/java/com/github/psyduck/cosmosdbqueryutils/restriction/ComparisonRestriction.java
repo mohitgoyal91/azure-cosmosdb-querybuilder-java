@@ -1,8 +1,8 @@
-package com.psyduck.cosmosdbqueryutils.restriction;
+package com.github.psyduck.cosmosdbqueryutils.restriction;
 
-import com.psyduck.cosmosdbqueryutils.restrictionexpressions.ComparisonRestrictionExpression;
-import com.psyduck.cosmosdbqueryutils.utilities.Constants;
-import com.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
+import com.github.psyduck.cosmosdbqueryutils.restrictionexpressions.ComparisonRestrictionExpression;
+import com.github.psyduck.cosmosdbqueryutils.utilities.Constants;
+import com.github.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
 
 import java.util.Optional;
 

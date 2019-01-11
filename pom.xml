@@ -10,7 +10,7 @@
         <java.version>1.8</java.version>
     </properties>
 
-    <groupId>com.psyduck</groupId>
+    <groupId>com.github.psyduck</groupId>
     <artifactId>cosmosdbquery-utils</artifactId>
     <version>1.0-SNAPSHOT</version>
 </project>

@@ -1,13 +1,13 @@
-package com.psyduck.cosmosdbqueryutils.restriction;
+package com.github.psyduck.cosmosdbqueryutils.restriction;
 
-import com.psyduck.cosmosdbqueryutils.models.GeoSpatialObject;
-import com.psyduck.cosmosdbqueryutils.restrictionexpressions.GeoSpatialRestrictionExpression;
-import com.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
+import com.github.psyduck.cosmosdbqueryutils.models.GeoSpatialObject;
+import com.github.psyduck.cosmosdbqueryutils.restrictionexpressions.GeoSpatialRestrictionExpression;
+import com.github.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
 
-import static com.psyduck.cosmosdbqueryutils.utilities.Constants.FUNCTION.GEOSPATIAL.*;
-import static com.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Comparison.*;
-import static com.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Logical.AND;
-import static com.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
+import static com.github.psyduck.cosmosdbqueryutils.utilities.Constants.FUNCTION.GEOSPATIAL.*;
+import static com.github.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Comparison.*;
+import static com.github.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Logical.AND;
+import static com.github.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
 public class GeoSpatialRestriction extends Restriction {
 

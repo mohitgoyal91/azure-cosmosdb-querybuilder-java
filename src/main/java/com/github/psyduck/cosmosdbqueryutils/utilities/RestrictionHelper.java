@@ -1,4 +1,4 @@
-package com.psyduck.cosmosdbqueryutils.utilities;
+package com.github.psyduck.cosmosdbqueryutils.utilities;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.psyduck.cosmosdbqueryutils.utilities;
+package com.github.psyduck.cosmosdbqueryutils.utilities;
 
 public class Constants {
 

@@ -1,7 +1,7 @@
-package com.psyduck.cosmosdbqueryutils.restrictionexpressions;
+package com.github.psyduck.cosmosdbqueryutils.restrictionexpressions;
 
-import com.psyduck.cosmosdbqueryutils.utilities.Constants;
-import com.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
+import com.github.psyduck.cosmosdbqueryutils.utilities.Constants;
+import com.github.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
 
 import java.util.ArrayList;
 import java.util.List;

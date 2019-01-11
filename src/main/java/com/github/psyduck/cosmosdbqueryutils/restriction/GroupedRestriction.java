@@ -1,6 +1,6 @@
-package com.psyduck.cosmosdbqueryutils.restriction;
+package com.github.psyduck.cosmosdbqueryutils.restriction;
 
-import com.psyduck.cosmosdbqueryutils.utilities.Constants;
+import com.github.psyduck.cosmosdbqueryutils.utilities.Constants;
 
 import java.util.Arrays;
 import java.util.List;

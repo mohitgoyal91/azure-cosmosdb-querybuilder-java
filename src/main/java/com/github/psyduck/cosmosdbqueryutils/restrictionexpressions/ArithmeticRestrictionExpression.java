@@ -1,12 +1,10 @@
-package com.psyduck.cosmosdbqueryutils.restrictionexpressions;
+package com.github.psyduck.cosmosdbqueryutils.restrictionexpressions;
+
+import com.github.psyduck.cosmosdbqueryutils.utilities.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.psyduck.cosmosdbqueryutils.utilities.Constants.GENERAL.ALIAS;
-import static com.psyduck.cosmosdbqueryutils.utilities.Constants.GENERAL.CURLY_BRACKETS_REGEX;
-import static com.psyduck.cosmosdbqueryutils.utilities.Constants.GENERAL.DOT;
 
 public class ArithmeticRestrictionExpression extends RestrictionExpression{
 
@@ -31,15 +29,15 @@ public class ArithmeticRestrictionExpression extends RestrictionExpression{
         List<Object> parameters = Arrays.asList((Object[])value);
         for(Object _value : parameters){
             if(_value instanceof String){
-                expression = expression.replaceFirst(CURLY_BRACKETS_REGEX, getQueryParameter((String)_value));
+                expression = expression.replaceFirst(Constants.GENERAL.CURLY_BRACKETS_REGEX, getQueryParameter((String)_value));
             } else {
-                expression = expression.replaceFirst(CURLY_BRACKETS_REGEX, _value.toString());
+                expression = expression.replaceFirst(Constants.GENERAL.CURLY_BRACKETS_REGEX, _value.toString());
             }
         }
         return expression;
     }
 
     private static String getQueryParameter(String propertyName) {
-        return new String(ALIAS + DOT + propertyName);
+        return new String(Constants.GENERAL.ALIAS + Constants.GENERAL.DOT + propertyName);
     }
 }

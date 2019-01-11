@@ -1,4 +1,4 @@
-package com.psyduck.cosmosdbqueryutils.restrictionexpressions;
+package com.github.psyduck.cosmosdbqueryutils.restrictionexpressions;
 
 public class RestrictionExpression {
 

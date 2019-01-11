@@ -1,20 +1,18 @@
-package com.psyduck.cosmosdbqueryutils;
+package com.github.psyduck.cosmosdbqueryutils;
 
-import com.psyduck.cosmosdbqueryutils.models.Columns;
-import com.psyduck.cosmosdbqueryutils.models.Order;
-import com.psyduck.cosmosdbqueryutils.restriction.GroupedRestriction;
-import com.psyduck.cosmosdbqueryutils.restriction.Restriction;
-import com.psyduck.cosmosdbqueryutils.utilities.Constants;
-import com.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
+import com.github.psyduck.cosmosdbqueryutils.models.Columns;
+import com.github.psyduck.cosmosdbqueryutils.models.Order;
+import com.github.psyduck.cosmosdbqueryutils.restriction.GroupedRestriction;
+import com.github.psyduck.cosmosdbqueryutils.utilities.Constants;
+import com.github.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
+import com.github.psyduck.cosmosdbqueryutils.restriction.Restriction;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.psyduck.cosmosdbqueryutils.restriction.Restriction.filterRestrictions;
-import static com.psyduck.cosmosdbqueryutils.utilities.Constants.GENERAL.*;
-import static com.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
+import static com.github.psyduck.cosmosdbqueryutils.restriction.Restriction.filterRestrictions;
 
 public class SelectQuery<T> {
 
@@ -29,7 +27,7 @@ public class SelectQuery<T> {
     }
 
     public String createQuery() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        queryBuilder.append(SELECT);
+        queryBuilder.append(Constants.GENERAL.SELECT);
         if(isCount){
             processCount();
         } else {
@@ -44,14 +42,14 @@ public class SelectQuery<T> {
     }
 
     private void processCount() {
-        queryBuilder.append(VALUE_COUNT);
+        queryBuilder.append(Constants.GENERAL.VALUE_COUNT);
     }
 
     private void processOrder() {
         Optional.ofNullable(order).ifPresent(order ->
-            queryBuilder.append(ORDER_BY)
-                    .append(ALIAS)
-                    .append(DOT)
+            queryBuilder.append(Constants.GENERAL.ORDER_BY)
+                    .append(Constants.GENERAL.ALIAS)
+                    .append(Constants.GENERAL.DOT)
                     .append(order.getParameterName())
                     .append(order.getOrder().getName())
         );
@@ -60,19 +58,19 @@ public class SelectQuery<T> {
     private void processRestrictions() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         filterRestrictions(this.restrictions);
         if(this.restrictions.size() > 0){
-            queryBuilder.append(WHERE);
+            queryBuilder.append(Constants.GENERAL.WHERE);
             Restriction.appendGroupedRestrictions(restrictions, queryBuilder);
         }
     }
 
     private void processFrom() {
-        queryBuilder.append(FROM)
-                .append(ALIAS);
+        queryBuilder.append(Constants.GENERAL.FROM)
+                .append(Constants.GENERAL.ALIAS);
     }
 
     private void processLimit() {
         Optional.ofNullable(limit).ifPresent(limit -> {
-            queryBuilder.append(TOP).append(limit);
+            queryBuilder.append(Constants.GENERAL.TOP).append(limit);
         });
     }
 
@@ -88,14 +86,14 @@ public class SelectQuery<T> {
         int i;
         for(i=0; i<this.columns.getColumns().size()-1; i++){
             appendColumnToQuery(this.columns.getColumns().get(i), getAlias(i));
-            queryBuilder.append(COMMA);
+            queryBuilder.append(Constants.GENERAL.COMMA);
         }
         appendColumnToQuery(this.columns.getColumns().get(i), getAlias(i));
     }
 
     private void appendColumn() {
-        if(this.columns.getColumns().get(0).equalsIgnoreCase(ALL)){
-            queryBuilder.append(ALL);
+        if(this.columns.getColumns().get(0).equalsIgnoreCase(Constants.GENERAL.ALL)){
+            queryBuilder.append(Constants.GENERAL.ALL);
         } else {
             appendColumnToQuery(this.columns.getColumns().get(0), getAlias(0));
         }
@@ -106,11 +104,11 @@ public class SelectQuery<T> {
     }
 
     private void appendColumnToQuery(String parameterName, Optional<String> alias) {
-        queryBuilder.append(ALIAS)
-                .append(DOT)
+        queryBuilder.append(Constants.GENERAL.ALIAS)
+                .append(Constants.GENERAL.DOT)
                 .append(parameterName);
         if(alias.isPresent()){
-            queryBuilder.append(AS);
+            queryBuilder.append(Constants.GENERAL.AS);
             queryBuilder.append(alias.get());
         }
     }
@@ -134,7 +132,7 @@ public class SelectQuery<T> {
 
     public SelectQuery orAddRestrictions(Restriction... restrictions){
         if(this.restrictions.size() > 0){
-            RestrictionHelper.getLastElementFromList(this.restrictions).setLogicalCombiner(OR);
+            RestrictionHelper.getLastElementFromList(this.restrictions).setLogicalCombiner(Constants.Operators.Logical.OR);
         }
         this.addRestrictions(restrictions);
         return this;

@@ -1,9 +1,9 @@
-package com.psyduck.cosmosdbqueryutils.restriction;
+package com.github.psyduck.cosmosdbqueryutils.restriction;
 
-import com.psyduck.cosmosdbqueryutils.RestrictionInterface;
-import com.psyduck.cosmosdbqueryutils.restrictionexpressions.RestrictionExpression;
-import com.psyduck.cosmosdbqueryutils.utilities.Constants;
-import com.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
+import com.github.psyduck.cosmosdbqueryutils.RestrictionInterface;
+import com.github.psyduck.cosmosdbqueryutils.restrictionexpressions.RestrictionExpression;
+import com.github.psyduck.cosmosdbqueryutils.utilities.Constants;
+import com.github.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
