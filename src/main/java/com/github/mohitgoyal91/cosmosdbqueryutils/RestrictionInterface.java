@@ -1,6 +1,6 @@
-package com.github.psyduck.cosmosdbqueryutils;
+package com.github.mohitgoyal91.cosmosdbqueryutils;
 
-import com.github.psyduck.cosmosdbqueryutils.restriction.Restriction;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.Restriction;
 
 public interface RestrictionInterface<T> {
     void addRestriction(String propertyName, Object value, String comparator);

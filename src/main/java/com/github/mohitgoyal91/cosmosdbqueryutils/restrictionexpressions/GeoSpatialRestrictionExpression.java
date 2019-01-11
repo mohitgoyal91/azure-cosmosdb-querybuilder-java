@@ -1,7 +1,7 @@
-package com.github.psyduck.cosmosdbqueryutils.restrictionexpressions;
+package com.github.mohitgoyal91.cosmosdbqueryutils.restrictionexpressions;
 
-import com.github.psyduck.cosmosdbqueryutils.models.GeoSpatialObject;
-import com.github.psyduck.cosmosdbqueryutils.utilities.Constants;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
+import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 
 import java.util.Optional;
 

@@ -1,13 +1,13 @@
-package com.github.psyduck.cosmosdbqueryutils.restriction;
+package com.github.mohitgoyal91.cosmosdbqueryutils.restriction;
 
-import com.github.psyduck.cosmosdbqueryutils.models.GeoSpatialObject;
-import com.github.psyduck.cosmosdbqueryutils.restrictionexpressions.GeoSpatialRestrictionExpression;
-import com.github.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionexpressions.GeoSpatialRestrictionExpression;
+import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 
-import static com.github.psyduck.cosmosdbqueryutils.utilities.Constants.FUNCTION.GEOSPATIAL.*;
-import static com.github.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Comparison.*;
-import static com.github.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Logical.AND;
-import static com.github.psyduck.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
+import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.FUNCTION.GEOSPATIAL.*;
+import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Comparison.*;
+import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.AND;
+import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
 public class GeoSpatialRestriction extends Restriction {
 

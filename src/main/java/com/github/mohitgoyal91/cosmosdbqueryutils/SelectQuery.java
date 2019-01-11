@@ -1,18 +1,18 @@
-package com.github.psyduck.cosmosdbqueryutils;
+package com.github.mohitgoyal91.cosmosdbqueryutils;
 
-import com.github.psyduck.cosmosdbqueryutils.models.Columns;
-import com.github.psyduck.cosmosdbqueryutils.models.Order;
-import com.github.psyduck.cosmosdbqueryutils.restriction.GroupedRestriction;
-import com.github.psyduck.cosmosdbqueryutils.utilities.Constants;
-import com.github.psyduck.cosmosdbqueryutils.utilities.RestrictionHelper;
-import com.github.psyduck.cosmosdbqueryutils.restriction.Restriction;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.Columns;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.Order;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.GroupedRestriction;
+import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
+import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.Restriction;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.github.psyduck.cosmosdbqueryutils.restriction.Restriction.filterRestrictions;
+import static com.github.mohitgoyal91.cosmosdbqueryutils.restriction.Restriction.filterRestrictions;
 
 public class SelectQuery<T> {
 

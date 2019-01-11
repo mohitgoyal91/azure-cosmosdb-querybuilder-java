@@ -1,13 +1,13 @@
-package com.github.psyduck.cosmosdbqueryutils;
+package com.github.mohitgoyal91.cosmosdbqueryutils;
 
-import com.github.psyduck.cosmosdbqueryutils.models.Columns;
-import com.github.psyduck.cosmosdbqueryutils.models.Coordinate;
-import com.github.psyduck.cosmosdbqueryutils.models.GeoSpatialObject;
-import com.github.psyduck.cosmosdbqueryutils.restriction.ArithmeticRestriction;
-import com.github.psyduck.cosmosdbqueryutils.restriction.ComparisonRestriction;
-import com.github.psyduck.cosmosdbqueryutils.restriction.GeoSpatialRestriction;
-import com.github.psyduck.cosmosdbqueryutils.restriction.INRestriction;
-import com.github.psyduck.cosmosdbqueryutils.utilities.Constants;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.ComparisonRestriction;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.GeoSpatialRestriction;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.INRestriction;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.Columns;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.Coordinate;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.ArithmeticRestriction;
+import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.github.psyduck.cosmosdbqueryutils.models;
+package com.github.mohitgoyal91.cosmosdbqueryutils.models;
 
 public class Coordinate {
     private Double lat;
