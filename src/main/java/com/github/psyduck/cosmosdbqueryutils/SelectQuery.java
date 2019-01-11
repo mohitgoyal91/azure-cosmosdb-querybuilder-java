@@ -38,7 +38,7 @@ public class SelectQuery<T> {
         processRestrictions();
         processOrder();
 
-        return queryBuilder.toString().trim();
+        return queryBuilder.toString().trim().replaceAll("( )+", " ");
     }
 
     private void processCount() {
