@@ -14,6 +14,27 @@
         <java.target.version>1.8</java.target.version>
     </properties>
 
+    <name>azure-cosmosdb-querybuilder-java</name>
+    <description>Java API for effectively building SQL Queries of Azure Cosmos DB</description>
+    <url>https://github.com/mohitgoyal91/azure-cosmosdb-querybuilder-java</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://raw.githubusercontent.com/mohitgoyal91/azure-cosmosdb-querybuilder-java/master/LICENSE</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Mohit Goyal</name>
+            <email>mohitgoyal91@yahoo.co.in</email>
+            <organization>mohitgoyal91</organization>
+            <organizationUrl>https://github.com/mohitgoyal91</organizationUrl>
+            <timezone>UTC+01:00</timezone>
+        </developer>
+    </developers>
+
     <distributionManagement>
         <snapshotRepository>
             <id>mohitgoyal91</id>
@@ -90,21 +111,22 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
+                <version>2.10.2</version>
                 <executions>
                     <execution>
                         <id>attach-javadoc</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
+                        <configuration> <!-- add this to disable checking -->
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
