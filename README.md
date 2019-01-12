@@ -8,6 +8,15 @@ The implementation in this project is intended for reference purpose only.
 ### Dependencies
 Dependencies will be added automatically if Maven is used. Otherwise, please download the dependencies from the pom.xml file and add them to your build path. 
 
+For example, using maven, you can add the following dependency to your maven pom file:
+```java
+<dependency>
+  <groupId>com.github.mohitgoyal91</groupId>
+  <artifactId>cosmosdbquery-utils</artifactId>
+  <version>1.1.3</version>
+</dependency>
+```
+
 ### Some Sample Queries
 
 SELECT * FROM C
