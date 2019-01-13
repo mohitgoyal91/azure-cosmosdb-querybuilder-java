@@ -13,7 +13,7 @@ For example, using maven, you can add the following dependency to your maven pom
 <dependency>
   <groupId>com.github.mohitgoyal91</groupId>
   <artifactId>cosmosdbquery-utils</artifactId>
-  <version>1.1.3</version>
+  <version>1.5.0</version>
 </dependency>
 ```
 

@@ -8,8 +8,7 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.INRestriction;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.*;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 
-public class RestrictionBuilder implements RestrictionExtractor, ComparisonRestrictionExtractor, ArithmeticRestrictionExtractor
-        , INRestrictionExtractor, GeoSpatialRestrictionExtractor {
+public class RestrictionBuilder extends RestrictionExtractor {
 
     /**
      * To create query with id restriction

@@ -14,8 +14,7 @@ import java.util.List;
 
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
-public class SelectQuery implements RestrictionExtractor, ComparisonRestrictionExtractor, ArithmeticRestrictionExtractor
-        , INRestrictionExtractor, GeoSpatialRestrictionExtractor {
+public class SelectQuery extends RestrictionExtractor {
 
     private boolean isCount;
     private Integer limit;
