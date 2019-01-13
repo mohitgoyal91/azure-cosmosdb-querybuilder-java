@@ -11,37 +11,37 @@ import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Ope
 
 public class GeoSpatialRestriction extends Restriction {
 
-    public GeoSpatialRestriction distanceEq(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
+    public GeoSpatialRestriction eq(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, EQUAL);
         return this;
     }
 
-    public GeoSpatialRestriction distanceNotEq(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
+    public GeoSpatialRestriction notEq(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, NOT_EQUAL);
         return this;
     }
 
-    public GeoSpatialRestriction distanceLt(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
+    public GeoSpatialRestriction lt(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, LESS_THAN);
         return this;
     }
 
-    public GeoSpatialRestriction distanceLte(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
+    public GeoSpatialRestriction lte(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, LESS_THAN_EQUAL);
         return this;
     }
 
-    public GeoSpatialRestriction distanceGt(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
+    public GeoSpatialRestriction gt(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, GREATER_THAN);
         return this;
     }
 
-    public GeoSpatialRestriction distanceGte(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
+    public GeoSpatialRestriction gte(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, GREATER_THAN_EQUAL);
         return this;

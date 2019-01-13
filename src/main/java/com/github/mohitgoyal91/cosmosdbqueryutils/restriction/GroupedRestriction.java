@@ -14,6 +14,10 @@ public class GroupedRestriction<T> {
         this.restrictions = Arrays.asList(restrictions);
     }
 
+    public GroupedRestriction(T restriction){
+        this.restrictions = Arrays.asList(restriction);
+    }
+
     public List<T> getRestrictions() {
         return restrictions;
     }

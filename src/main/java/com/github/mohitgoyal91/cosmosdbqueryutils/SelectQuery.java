@@ -1,116 +1,52 @@
 package com.github.mohitgoyal91.cosmosdbqueryutils;
 
+import com.github.mohitgoyal91.cosmosdbqueryutils.QueryProcessor.Processor;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.Columns;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.Order;
-import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.GroupedRestriction;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.*;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
-import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.Restriction;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import static com.github.mohitgoyal91.cosmosdbqueryutils.restriction.Restriction.filterRestrictions;
+import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
-public class SelectQuery<T> {
+public class SelectQuery implements RestrictionExtractor{
 
     private boolean isCount;
     private Integer limit;
     private Columns columns = new Columns();
     private List<GroupedRestriction> restrictions = new ArrayList();
     private Order order;
-    private StringBuilder queryBuilder = new StringBuilder();
 
     public SelectQuery(){
     }
 
-    public String createQuery() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        queryBuilder.append(Constants.GENERAL.SELECT);
-        if(isCount){
-            processCount();
-        } else {
-            processLimit();
-            processColumns();
-        }
-        processFrom();
-        processRestrictions();
-        processOrder();
-
-        return queryBuilder.toString().trim().replaceAll("( )+", " ");
+    public boolean isCount() {
+        return isCount;
     }
 
-    private void processCount() {
-        queryBuilder.append(Constants.GENERAL.VALUE_COUNT);
+    public Integer getLimit() {
+        return limit;
     }
 
-    private void processOrder() {
-        Optional.ofNullable(order).ifPresent(order ->
-            queryBuilder.append(Constants.GENERAL.ORDER_BY)
-                    .append(Constants.GENERAL.ALIAS)
-                    .append(Constants.GENERAL.DOT)
-                    .append(order.getParameterName())
-                    .append(order.getOrder().getName())
-        );
+    public Columns getColumns() {
+        return columns;
     }
 
-    private void processRestrictions() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        filterRestrictions(this.restrictions);
-        if(this.restrictions.size() > 0){
-            queryBuilder.append(Constants.GENERAL.WHERE);
-            Restriction.appendGroupedRestrictions(restrictions, queryBuilder);
-        }
+    public List<GroupedRestriction> getRestrictions() {
+        return restrictions;
     }
 
-    private void processFrom() {
-        queryBuilder.append(Constants.GENERAL.FROM)
-                .append(Constants.GENERAL.ALIAS);
+    public Order getOrder() {
+        return order;
     }
 
-    private void processLimit() {
-        Optional.ofNullable(limit).ifPresent(limit -> {
-            queryBuilder.append(Constants.GENERAL.TOP).append(limit);
-        });
-    }
-
-    private void processColumns() {
-        if(this.columns.getColumns().size() == 1){
-            appendColumn();
-        } else {
-            appendColumns();
-        }
-    }
-
-    private void appendColumns() {
-        int i;
-        for(i=0; i<this.columns.getColumns().size()-1; i++){
-            appendColumnToQuery(this.columns.getColumns().get(i), getAlias(i));
-            queryBuilder.append(Constants.GENERAL.COMMA);
-        }
-        appendColumnToQuery(this.columns.getColumns().get(i), getAlias(i));
-    }
-
-    private void appendColumn() {
-        if(this.columns.getColumns().get(0).equalsIgnoreCase(Constants.GENERAL.ALL)){
-            queryBuilder.append(Constants.GENERAL.ALL);
-        } else {
-            appendColumnToQuery(this.columns.getColumns().get(0), getAlias(0));
-        }
-    }
-
-    private Optional<String> getAlias(int i) {
-        return this.columns.getAlias().size() > i ? Optional.ofNullable(this.columns.getAlias().get(i)) : Optional.empty();
-    }
-
-    private void appendColumnToQuery(String parameterName, Optional<String> alias) {
-        queryBuilder.append(Constants.GENERAL.ALIAS)
-                .append(Constants.GENERAL.DOT)
-                .append(parameterName);
-        if(alias.isPresent()){
-            queryBuilder.append(Constants.GENERAL.AS);
-            queryBuilder.append(alias.get());
-        }
+    public String createQuery(){
+        Processor processor = new Processor(this);
+        return processor.processQuery();
     }
 
     public SelectQuery addColumns(Columns columns){
@@ -130,9 +66,16 @@ public class SelectQuery<T> {
         return this;
     }
 
+    public SelectQuery or(){
+        if(this.restrictions.size() > 0){
+            RestrictionHelper.getLastElementFromList(this.restrictions).setLogicalCombiner(OR);
+        }
+        return this;
+    }
+
     public SelectQuery orAddRestrictions(Restriction... restrictions){
         if(this.restrictions.size() > 0){
-            RestrictionHelper.getLastElementFromList(this.restrictions).setLogicalCombiner(Constants.Operators.Logical.OR);
+            RestrictionHelper.getLastElementFromList(this.restrictions).setLogicalCombiner(OR);
         }
         this.addRestrictions(restrictions);
         return this;
@@ -143,6 +86,10 @@ public class SelectQuery<T> {
         return this;
     }
 
+    public SelectQuery orderByTS(Constants.Order order){
+        return addOrdering(Constants.GENERAL._TS, Constants.Order.DESC);
+    }
+
     public SelectQuery addOrdering(String parameterName, Constants.Order order) {
        this.order = new Order(parameterName, order);
        return this;
@@ -151,5 +98,114 @@ public class SelectQuery<T> {
     public SelectQuery count() {
         this.isCount = true;
         return this;
+    }
+
+    @Override
+    public SelectQuery id(String id) {
+        return eq(Constants.GENERAL.ID, id);
+    }
+
+    @Override
+    public SelectQuery in(String propertyName, Object... values) {
+        return addRestrictions(new INRestriction().in(propertyName, values));
+    }
+
+    public SelectQuery in(String propertyName, List<Object> values) {
+        return addRestrictions(new INRestriction().in(propertyName, values));
+    }
+
+    @Override
+    public SelectQuery eq(String propertyName, Object value) {
+        return addRestrictions(new ComparisonRestriction().eq(propertyName, value));
+    }
+
+    @Override
+    public SelectQuery notEq(String propertyName, Object value) {
+        return addRestrictions(new ComparisonRestriction().notEq(propertyName, value));
+    }
+
+    @Override
+    public SelectQuery lt(String propertyName, Object value) {
+        return addRestrictions(new ComparisonRestriction().lt(propertyName, value));
+    }
+
+    @Override
+    public SelectQuery lte(String propertyName, Object value) {
+        return addRestrictions(new ComparisonRestriction().lte(propertyName, value));
+    }
+
+    @Override
+    public SelectQuery gt(String propertyName, Object value) {
+        return addRestrictions(new ComparisonRestriction().gt(propertyName, value));
+    }
+
+    @Override
+    public SelectQuery gte(String propertyName, Object value) {
+        return addRestrictions(new ComparisonRestriction().gte(propertyName, value));
+    }
+
+    @Override
+    public SelectQuery eq(Double value, String expression, Object... parameters) {
+        return addRestrictions(new ArithmeticRestriction().eq(value, expression, parameters));
+    }
+
+    @Override
+    public SelectQuery notEq(Double value, String expression, Object... parameters) {
+        return addRestrictions(new ArithmeticRestriction().notEq(value, expression, parameters));
+    }
+
+    @Override
+    public SelectQuery lt(Double value, String expression, Object... parameters) {
+        return addRestrictions(new ArithmeticRestriction().lt(value, expression, parameters));
+    }
+
+    @Override
+    public SelectQuery lte(Double value, String expression, Object... parameters) {
+        return addRestrictions(new ArithmeticRestriction().lte(value, expression, parameters));
+    }
+
+    @Override
+    public SelectQuery gt(Double value, String expression, Object... parameters) {
+        return addRestrictions(new ArithmeticRestriction().gt(value, expression, parameters));
+    }
+
+    @Override
+    public SelectQuery gte(Double value, String expression, Object... parameters) {
+        return addRestrictions(new ArithmeticRestriction().gte(value, expression, parameters));
+    }
+
+    @Override
+    public SelectQuery eq(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
+        return addRestrictions(new GeoSpatialRestriction().eq(propertyName, geoSpatialObject, value));
+    }
+
+    @Override
+    public SelectQuery notEq(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
+        return addRestrictions(new GeoSpatialRestriction().notEq(propertyName, geoSpatialObject, value));
+    }
+
+    @Override
+    public SelectQuery lt(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
+        return addRestrictions(new GeoSpatialRestriction().lt(propertyName, geoSpatialObject, value));
+    }
+
+    @Override
+    public SelectQuery lte(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
+        return addRestrictions(new GeoSpatialRestriction().lte(propertyName, geoSpatialObject, value));
+    }
+
+    @Override
+    public SelectQuery gt(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
+        return addRestrictions(new GeoSpatialRestriction().gt(propertyName, geoSpatialObject, value));
+    }
+
+    @Override
+    public SelectQuery gte(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
+        return addRestrictions(new GeoSpatialRestriction().gte(propertyName, geoSpatialObject, value));
+    }
+
+    @Override
+    public SelectQuery within(String propertyName, GeoSpatialObject geoSpatialObject) {
+        return addRestrictions(new GeoSpatialRestriction().within(propertyName, geoSpatialObject));
     }
 }

@@ -9,13 +9,14 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.ArithmeticRestriction;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Order.DESC;
+
 public class Test {
 
-    public static void main(String args[]) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public static void main(String args[]){
         //SELECT *  FROM  C
         System.out.println("Test Query 1: " + getSelectQuery());
 
@@ -32,9 +33,28 @@ public class Test {
         * ( ( ST_DISTANCE  ( C.home.coordinates, {"type":"Point", "coordinates":[[48.858483, 2.294524]]})  <= 2000.0)
         *  OR  ((  C.monthlyIncome * 12 ) +  C.savings  >= 500.0) )*/
         System.out.println("Test Query 4: " + getSelectQuery4());
+        
+        /*
+        * SELECT * FROM C WHERE ( C.id = '123' )
+        * OR ( C.name IN (1, 'mohit' ) )
+        * AND ( C.uuid = 124) AND ( C.uuid = 123)
+        * ORDER BY C._ts DESC*/
+        System.out.println("Test Query 5: " + getSelectQuery5());
     }
 
-    private static String getSelectQuery4() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    private static String getSelectQuery5() {
+        List<Object> list = new ArrayList<>();
+        list.add(1); list.add("mohit");
+        return new SelectQuery()
+                .id("123").or()
+                .in("name", list)
+                .eq("uuid",124)
+                .addRestrictions(new ComparisonRestriction().eq("uuid",123))
+                .orderByTS(DESC)
+                .createQuery();
+    }
+
+    private static String getSelectQuery4(){
         return new SelectQuery()
                 .addColumns(new Columns("id"))
                 .addRestrictions(
@@ -47,7 +67,7 @@ public class Test {
                 )
                 .orAddRestrictions(
                         new GeoSpatialRestriction()
-                        .distanceLte("home.coordinates",
+                        .lte("home.coordinates",
                                 new GeoSpatialObject(Constants.GeoSpatialTypes.POINT,
                                         new Coordinate(48.858483, 2.294524)), 2000.0)
                         .or(),
@@ -57,7 +77,7 @@ public class Test {
                 .createQuery();
     }
 
-    private static String getSelectQuery3() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    private static String getSelectQuery3(){
         List<String> columns = new ArrayList<>();
         columns.add("id"); columns.add("name");
         List<String> as = new ArrayList<>();
@@ -67,15 +87,15 @@ public class Test {
                 .createQuery();
     }
 
-    private static String getSelectQuery2() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    private static String getSelectQuery2(){
         return new SelectQuery()
                 .addColumns(new Columns("id", "name").as("ID", "NAME"))
-                .addOrdering("_ts", Constants.Order.DESC)
+                .addOrdering("_ts", DESC)
                 .limitResults(5)
                 .createQuery();
     }
 
-    private static String getSelectQuery() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    private static String getSelectQuery(){
         return new SelectQuery().createQuery();
     }
 }

@@ -1,5 +1,6 @@
 package com.github.mohitgoyal91.cosmosdbqueryutils.restriction;
 
+import com.github.mohitgoyal91.cosmosdbqueryutils.AddRestrictionInterface;
 import com.github.mohitgoyal91.cosmosdbqueryutils.RestrictionInterface;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionexpressions.RestrictionExpression;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
@@ -9,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Restriction<T> implements RestrictionInterface {
+public abstract class Restriction<T> implements RestrictionInterface, AddRestrictionInterface {
 
     protected List<T> restrictionExpressionList = new ArrayList<>();
     private String logicalCombiner = Constants.Operators.Logical.AND;

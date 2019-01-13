@@ -4,6 +4,8 @@ public class Constants {
 
     public static final class GENERAL{
         public static final String SELECT = "SELECT";
+        public static final String ID = "id";
+        public static final String _TS = "_ts";
         public static final String VALUE_COUNT = " VALUE COUNT(1) ";
         public static final String TOP = " TOP ";
         public static final String ALL = " * ";
@@ -40,6 +42,14 @@ public class Constants {
         }
         public String getName(){
             return this.name;
+        }
+    }
+
+    public enum Logical{
+        OR("OR"), AND("AND"), NOT("NOT");
+        private String name;
+        Logical(String name){
+            this.name = name;
         }
     }
 
