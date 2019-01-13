@@ -83,8 +83,10 @@ return new SelectQuery()
                 .eq("pid", 123)
                 .or()
                 .addRestrictions(
-                        new RestrictionBuilder().gte("age", 15).or(),
-                        new RestrictionBuilder().lt("age", 29)
+                        new RestrictionBuilder()
+                                .gte("age", 15)
+                                .or()
+                                .lt("age", 29)
                 )
                 .createQuery();
 ```

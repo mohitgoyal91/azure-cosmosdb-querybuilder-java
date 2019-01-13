@@ -51,8 +51,10 @@ public class Test {
                 .eq("pid", 123)
                 .or()
                 .addRestrictions(
-                        new RestrictionBuilder().gte("age", 15).or(),
-                        new RestrictionBuilder().lt("age", 29)
+                        new RestrictionBuilder()
+                                .gte("age", 15)
+                                .or()
+                                .lt("age", 29)
                 )
                 .createQuery();
     }
@@ -73,8 +75,10 @@ public class Test {
         return new SelectQuery()
                 .columns(new Columns("id"))
                 .addRestrictions(
-                        new RestrictionBuilder().eq("name", "Mohit")
-                        .or().lte("age", 28),
+                        new RestrictionBuilder()
+                                .eq("name", "Mohit")
+                                .or()
+                                .lte("age", 28),
                         new RestrictionBuilder().in("surname", "Goyal", "Sharma")
                 )
                 .orAddRestrictions(
