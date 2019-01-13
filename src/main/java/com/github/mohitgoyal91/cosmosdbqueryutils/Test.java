@@ -40,6 +40,21 @@ public class Test {
         * AND ( C.uuid = 124) AND ( C.uuid = 123)
         * ORDER BY C._ts DESC*/
         System.out.println("Test Query 5: " + getSelectQuery5());
+
+        /*
+        * SELECT * FROM C WHERE ( C.pid = 123) OR ( ( C.age >= 15) OR ( C.age < 29) )*/
+        System.out.println("Test Query 6: " + getSelectQuery6());
+    }
+
+    private static String getSelectQuery6() {
+        return new SelectQuery()
+                .eq("pid", 123)
+                .or()
+                .addRestrictions(
+                        new RestrictionBuilder().gte("age", 15).or(),
+                        new RestrictionBuilder().lt("age", 29)
+                )
+                .createQuery();
     }
 
     private static String getSelectQuery5() {
@@ -48,8 +63,8 @@ public class Test {
         return new SelectQuery()
                 .id("123").or()
                 .in("name", list)
-                .eq("uuid",124)
-                .addRestrictions(new ComparisonRestriction().eq("uuid",123))
+                .eq("pid",124)
+                .addRestrictions(new RestrictionBuilder().eq("uuid",123))
                 .orderByTS(DESC)
                 .createQuery();
     }
@@ -58,20 +73,16 @@ public class Test {
         return new SelectQuery()
                 .columns(new Columns("id"))
                 .addRestrictions(
-                        new ComparisonRestriction()
-                        .eq("name", "Mohit")
-                        .or()
-                        .lte("age", 28),
-                        new INRestriction()
-                        .in("surname", "Goyal", "Sharma")
+                        new RestrictionBuilder().eq("name", "Mohit")
+                        .or().lte("age", 28),
+                        new RestrictionBuilder().in("surname", "Goyal", "Sharma")
                 )
                 .orAddRestrictions(
-                        new GeoSpatialRestriction()
-                        .lte("home.coordinates",
+                        new RestrictionBuilder().lte("home.coordinates",
                                 new GeoSpatialObject(Constants.GeoSpatialTypes.POINT,
                                         new Coordinate(48.858483, 2.294524)), 2000.0)
                         .or(),
-                        new ArithmeticRestriction()
+                        new RestrictionBuilder()
                         .gte(500.0, "( {} * {} ) + {} ", "monthlyIncome", 12, "savings")
                 )
                 .createQuery();
