@@ -413,17 +413,12 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     @Override
     public SelectQuery count(String propertyName) {
-        return count(propertyName, propertyName, null);
+        return count(propertyName, propertyName);
     }
 
     @Override
     public SelectQuery count(String propertyName, String alias) {
-        return count(propertyName, alias, null);
-    }
-
-    @Override
-    public SelectQuery count(String propertyName, String alias, String udf) {
-        aggregateFunctions.add(new AggregateFunction().count(propertyName, alias, udf));
+        aggregateFunctions.add(new AggregateFunction().count(propertyName, alias));
         return this;
     }
 

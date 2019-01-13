@@ -32,8 +32,8 @@ public class AggregateFunction implements AggregateExtractor{
     }
 
     @Override
-    public AggregateFunction count(String propertyName, String alias, String udf) {
-        setPropertyAlias(propertyName, alias, udf);
+    public AggregateFunction count(String propertyName, String alias) {
+        setPropertyAlias(propertyName, alias, null);
         this.aggregator = COUNT;
         return this;
     }

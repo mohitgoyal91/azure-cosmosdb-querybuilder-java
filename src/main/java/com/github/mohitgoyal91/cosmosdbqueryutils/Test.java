@@ -51,7 +51,8 @@ public class Test {
     private static String getSelectQuery7() {
         return new SelectQuery()
                 .columns(new Columns("hello"))
-                .max("age", "age", null)
+                .max("age", "age")
+                .count("id", "id")
                 .sum("life")
                 .min("failure", "failure", "convertToInt")
                 .createQuery();
