@@ -9,9 +9,9 @@ import java.util.Optional;
 public class ComparisonRestriction extends Restriction {
 
     /**
-     * To introduce a = restriction in the query
+     * To introduce a {@literal =} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
     public ComparisonRestriction eq(String propertyName, Object value){
@@ -20,9 +20,9 @@ public class ComparisonRestriction extends Restriction {
     }
 
     /**
-     * To introduce a != restriction in the query
+     * To introduce a {@literal !=} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
     public ComparisonRestriction notEq(String propertyName, Object value){
@@ -31,9 +31,9 @@ public class ComparisonRestriction extends Restriction {
     }
 
     /**
-     * To introduce a < restriction in the query
+     * To introduce a {@literal <} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
     public ComparisonRestriction lt(String propertyName, Object value){
@@ -42,9 +42,9 @@ public class ComparisonRestriction extends Restriction {
     }
 
     /**
-     * To introduce a <= restriction in the query
+     * To introduce a {@literal <=} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
     public ComparisonRestriction lte(String propertyName, Object value){
@@ -53,9 +53,9 @@ public class ComparisonRestriction extends Restriction {
     }
 
     /**
-     * To introduce a > restriction in the query
+     * To introduce a {@literal >} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
     public ComparisonRestriction gt(String propertyName, Object value){
@@ -64,9 +64,9 @@ public class ComparisonRestriction extends Restriction {
     }
 
     /**
-     * To introduce a >= restriction in the query
+     * To introduce a {@literal >=} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
     public ComparisonRestriction gte(String propertyName, Object value){

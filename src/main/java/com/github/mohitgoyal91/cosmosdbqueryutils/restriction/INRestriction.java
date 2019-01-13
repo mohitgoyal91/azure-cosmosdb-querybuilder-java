@@ -15,6 +15,7 @@ public class INRestriction extends Restriction {
      * To introduce an in restriction in the query
      * @param propertyName property on which the restriction needs to be applied
      * @param values values separated by comma ','
+     * @param <T> type
      * @return current instance of INRestriction
      */
     public <T> INRestriction in(String propertyName, List<T> values){

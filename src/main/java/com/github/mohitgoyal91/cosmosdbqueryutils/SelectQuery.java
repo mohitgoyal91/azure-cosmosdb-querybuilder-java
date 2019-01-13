@@ -185,7 +185,7 @@ public class SelectQuery implements RestrictionExtractor{
     /**
      * To introduce a = restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of SelectQuery
      */
     @Override
@@ -194,9 +194,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a != restriction in the query
+     * To introduce a {@literal =} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of SelectQuery
      */
     @Override
@@ -205,9 +205,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a < restriction in the query
+     * To introduce a {@literal <} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of SelectQuery
      */
     @Override
@@ -216,9 +216,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a <= restriction in the query
+     * To introduce a {@literal <=} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of SelectQuery
      */
     @Override
@@ -227,9 +227,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a > restriction in the query
+     * To introduce a {@literal >} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of SelectQuery
      */
     @Override
@@ -238,9 +238,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a >= restriction in the query
+     * To introduce a {@literal >=} restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param value
+     * @param value value which needs to be compared
      * @return current instance of SelectQuery
      */
     @Override
@@ -249,10 +249,10 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '='
+     * To introduce an arithmetic restriction in the query with {@literal =}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of SelectQuery
      */
     @Override
@@ -261,10 +261,10 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '!='
+     * To introduce an arithmetic restriction in the query with {@literal !=}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of SelectQuery
      */
     @Override
@@ -273,10 +273,10 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '<'
+     * To introduce an arithmetic restriction in the query with {@literal <}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of SelectQuery
      */
     @Override
@@ -285,10 +285,10 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '<='
+     * To introduce an arithmetic restriction in the query with {@literal <=}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of SelectQuery
      */
     @Override
@@ -297,10 +297,10 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '>'
+     * To introduce an arithmetic restriction in the query with {@literal >}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of SelectQuery
      */
     @Override
@@ -309,10 +309,10 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '>='
+     * To introduce an arithmetic restriction in the query with {@literal >=}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of SelectQuery
      */
     @Override
@@ -321,9 +321,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '='
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal =}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of SelectQuery
      */
@@ -333,9 +333,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '!='
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal !=}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of SelectQuery
      */
@@ -345,9 +345,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '<'
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal <}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of SelectQuery
      */
@@ -357,9 +357,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '<='
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal <=}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of SelectQuery
      */
@@ -369,9 +369,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '>'
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal >}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of SelectQuery
      */
@@ -381,9 +381,9 @@ public class SelectQuery implements RestrictionExtractor{
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '>='
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal >=}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of SelectQuery
      */
@@ -395,7 +395,7 @@ public class SelectQuery implements RestrictionExtractor{
     /**
      * To introduce a ST_WITHIN restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @return current instance of SelectQuery
      */
     @Override

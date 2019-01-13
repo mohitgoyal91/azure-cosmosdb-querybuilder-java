@@ -10,10 +10,10 @@ import java.util.List;
 public class ArithmeticRestriction extends Restriction{
 
     /**
-     * To introduce an arithmetic restriction in the query with '='
+     * To introduce an arithmetic restriction in the query with {@literal =}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
     public ArithmeticRestriction eq(Double value, String expression, Object... parameters){
@@ -22,10 +22,10 @@ public class ArithmeticRestriction extends Restriction{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '!='
+     * To introduce an arithmetic restriction in the query with {@literal !=}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
     public ArithmeticRestriction notEq(Double value, String expression, Object... parameters){
@@ -34,10 +34,10 @@ public class ArithmeticRestriction extends Restriction{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '<'
+     * To introduce an arithmetic restriction in the query with {@literal <}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
     public ArithmeticRestriction lt(Double value, String expression, Object... parameters){
@@ -46,10 +46,10 @@ public class ArithmeticRestriction extends Restriction{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '<='
+     * To introduce an arithmetic restriction in the query with {@literal <=}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
     public ArithmeticRestriction lte(Double value, String expression, Object... parameters){
@@ -58,10 +58,10 @@ public class ArithmeticRestriction extends Restriction{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '>'
+     * To introduce an arithmetic restriction in the query with {@literal >}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
     public ArithmeticRestriction gt(Double value, String expression, Object... parameters){
@@ -70,10 +70,10 @@ public class ArithmeticRestriction extends Restriction{
     }
 
     /**
-     * To introduce an arithmetic restriction in the query with '>='
+     * To introduce an arithmetic restriction in the query with {@literal >=}
      * @param value distance in double
      * @param expression like {} + {}
-     * @param parameters sequence of parameters & values
+     * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
     public ArithmeticRestriction gte(Double value, String expression, Object... parameters){

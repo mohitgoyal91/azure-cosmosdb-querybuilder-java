@@ -12,9 +12,9 @@ import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Ope
 public class GeoSpatialRestriction extends Restriction {
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '='
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal =}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
@@ -25,9 +25,9 @@ public class GeoSpatialRestriction extends Restriction {
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '!='
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal !=}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
@@ -38,9 +38,9 @@ public class GeoSpatialRestriction extends Restriction {
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '<'
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal <}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
@@ -51,9 +51,9 @@ public class GeoSpatialRestriction extends Restriction {
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '<='
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal <=}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
@@ -64,9 +64,9 @@ public class GeoSpatialRestriction extends Restriction {
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '>'
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal >}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
@@ -77,9 +77,9 @@ public class GeoSpatialRestriction extends Restriction {
     }
 
     /**
-     * To introduce a ST_DISTANCE restriction in the query with a '>='
+     * To introduce a ST_DISTANCE restriction in the query with a {@literal >=}
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObject
+     * @param geoSpatialObject GeoSpatialObject
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
@@ -92,7 +92,7 @@ public class GeoSpatialRestriction extends Restriction {
     /**
      * To introduce a WITHIN restriction in the query
      * @param propertyName property on which the restriction needs to be applied
-     * @param geoSpatialObjec
+     * @param geoSpatialObject GeoSpatialObject
      * @return current instance of GeoSpatialRestriction
      */
     public GeoSpatialRestriction within(String propertyName, GeoSpatialObject geoSpatialObject){
