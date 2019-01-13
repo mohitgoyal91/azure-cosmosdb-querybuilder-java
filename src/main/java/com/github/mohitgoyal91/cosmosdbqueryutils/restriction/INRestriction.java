@@ -11,10 +11,22 @@ import java.util.stream.Collectors;
 
 public class INRestriction extends Restriction {
 
+    /**
+     * To introduce an in restriction in the query
+     * @param propertyName property on which the restriction needs to be applied
+     * @param values values separated by comma ','
+     * @return current instance of INRestriction
+     */
     public <T> INRestriction in(String propertyName, List<T> values){
         return in(propertyName, values.toArray());
     }
 
+    /**
+     * To introduce an in restriction in the query
+     * @param propertyName property on which the restriction needs to be applied
+     * @param values values separated by comma ','
+     * @return current instance of INRestriction
+     */
     public INRestriction in(String propertyName, Object... values){
         addRestriction(propertyName, values, Constants.Operators.Comparison.IN);
         return this;
@@ -35,6 +47,10 @@ public class INRestriction extends Restriction {
         }
     }
 
+    /**
+     * to separate the previous and next restrictions by an 'AND'
+     * @return current instance of INRestriction
+     */
     @Override
     public INRestriction and() {
         if(this.restrictionExpressionList.size() > 0){
@@ -43,6 +59,10 @@ public class INRestriction extends Restriction {
         return this;
     }
 
+    /**
+     * to separate the previous and next restrictions by an 'OR'
+     * @return current instance of INRestriction
+     */
     @Override
     public INRestriction or() {
         if(this.restrictionExpressionList.size() > 0){

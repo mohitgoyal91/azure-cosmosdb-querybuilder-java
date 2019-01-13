@@ -9,31 +9,73 @@ import java.util.List;
 
 public class ArithmeticRestriction extends Restriction{
 
+    /**
+     * To introduce an arithmetic restriction in the query with '='
+     * @param value distance in double
+     * @param expression like {} + {}
+     * @param parameters sequence of parameters & values
+     * @return current instance of ArithmeticRestriction
+     */
     public ArithmeticRestriction eq(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.EQUAL);
         return this;
     }
 
+    /**
+     * To introduce an arithmetic restriction in the query with '!='
+     * @param value distance in double
+     * @param expression like {} + {}
+     * @param parameters sequence of parameters & values
+     * @return current instance of ArithmeticRestriction
+     */
     public ArithmeticRestriction notEq(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.NOT_EQUAL);
         return this;
     }
 
+    /**
+     * To introduce an arithmetic restriction in the query with '<'
+     * @param value distance in double
+     * @param expression like {} + {}
+     * @param parameters sequence of parameters & values
+     * @return current instance of ArithmeticRestriction
+     */
     public ArithmeticRestriction lt(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.LESS_THAN);
         return this;
     }
 
+    /**
+     * To introduce an arithmetic restriction in the query with '<='
+     * @param value distance in double
+     * @param expression like {} + {}
+     * @param parameters sequence of parameters & values
+     * @return current instance of ArithmeticRestriction
+     */
     public ArithmeticRestriction lte(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.LESS_THAN_EQUAL);
         return this;
     }
 
+    /**
+     * To introduce an arithmetic restriction in the query with '>'
+     * @param value distance in double
+     * @param expression like {} + {}
+     * @param parameters sequence of parameters & values
+     * @return current instance of ArithmeticRestriction
+     */
     public ArithmeticRestriction gt(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.GREATER_THAN);
         return this;
     }
 
+    /**
+     * To introduce an arithmetic restriction in the query with '>='
+     * @param value distance in double
+     * @param expression like {} + {}
+     * @param parameters sequence of parameters & values
+     * @return current instance of ArithmeticRestriction
+     */
     public ArithmeticRestriction gte(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.GREATER_THAN_EQUAL);
         return this;
@@ -51,6 +93,10 @@ public class ArithmeticRestriction extends Restriction{
         this.restrictionExpressionList.add(new ArithmeticRestrictionExpression(propertyName, value, comparator, Constants.Operators.Logical.AND));
     }
 
+    /**
+     * to separate the previous and next restrictions by an 'AND'
+     * @return current instance of ArithmeticRestriction
+     */
     @Override
     public ArithmeticRestriction and() {
         if(this.restrictionExpressionList.size() > 0){
@@ -59,6 +105,10 @@ public class ArithmeticRestriction extends Restriction{
         return this;
     }
 
+    /**
+     * to separate the previous and next restrictions by an 'OR'
+     * @return current instance of ArithmeticRestriction
+     */
     @Override
     public Restriction or() {
         if(this.restrictionExpressionList.size() > 0){

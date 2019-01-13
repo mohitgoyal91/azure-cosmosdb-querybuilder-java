@@ -11,42 +11,90 @@ import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Ope
 
 public class GeoSpatialRestriction extends Restriction {
 
+    /**
+     * To introduce a ST_DISTANCE restriction in the query with a '='
+     * @param propertyName property on which the restriction needs to be applied
+     * @param geoSpatialObject
+     * @param value distance value which should be compared
+     * @return current instance of GeoSpatialRestriction
+     */
     public GeoSpatialRestriction eq(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, EQUAL);
         return this;
     }
 
+    /**
+     * To introduce a ST_DISTANCE restriction in the query with a '!='
+     * @param propertyName property on which the restriction needs to be applied
+     * @param geoSpatialObject
+     * @param value distance value which should be compared
+     * @return current instance of GeoSpatialRestriction
+     */
     public GeoSpatialRestriction notEq(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, NOT_EQUAL);
         return this;
     }
 
+    /**
+     * To introduce a ST_DISTANCE restriction in the query with a '<'
+     * @param propertyName property on which the restriction needs to be applied
+     * @param geoSpatialObject
+     * @param value distance value which should be compared
+     * @return current instance of GeoSpatialRestriction
+     */
     public GeoSpatialRestriction lt(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, LESS_THAN);
         return this;
     }
 
+    /**
+     * To introduce a ST_DISTANCE restriction in the query with a '<='
+     * @param propertyName property on which the restriction needs to be applied
+     * @param geoSpatialObject
+     * @param value distance value which should be compared
+     * @return current instance of GeoSpatialRestriction
+     */
     public GeoSpatialRestriction lte(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, LESS_THAN_EQUAL);
         return this;
     }
 
+    /**
+     * To introduce a ST_DISTANCE restriction in the query with a '>'
+     * @param propertyName property on which the restriction needs to be applied
+     * @param geoSpatialObject
+     * @param value distance value which should be compared
+     * @return current instance of GeoSpatialRestriction
+     */
     public GeoSpatialRestriction gt(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, GREATER_THAN);
         return this;
     }
 
+    /**
+     * To introduce a ST_DISTANCE restriction in the query with a '>='
+     * @param propertyName property on which the restriction needs to be applied
+     * @param geoSpatialObject
+     * @param value distance value which should be compared
+     * @return current instance of GeoSpatialRestriction
+     */
     public GeoSpatialRestriction gte(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, GREATER_THAN_EQUAL);
         return this;
     }
 
+    /**
+     * To introduce a WITHIN restriction in the query
+     * @param propertyName property on which the restriction needs to be applied
+     * @param geoSpatialObjec
+     * @return current instance of GeoSpatialRestriction
+     */
     public GeoSpatialRestriction within(String propertyName, GeoSpatialObject geoSpatialObject){
         updateFunction(geoSpatialObject, ST_WITHIN);
         addRestriction(propertyName, geoSpatialObject, null);
@@ -81,6 +129,10 @@ public class GeoSpatialRestriction extends Restriction {
         this.restrictionExpressionList.add(new GeoSpatialRestrictionExpression(propertyName, value, comparator, AND));
     }
 
+    /**
+     * to separate the previous and next restrictions by an 'AND'
+     * @return current instance of GeoSpatialRestriction
+     */
     @Override
     public GeoSpatialRestriction and() {
         if(this.restrictionExpressionList.size() > 0){
@@ -89,6 +141,10 @@ public class GeoSpatialRestriction extends Restriction {
         return this;
     }
 
+    /**
+     * to separate the previous and next restrictions by an 'OR'
+     * @return current instance of GeoSpatialRestriction
+     */
     @Override
     public GeoSpatialRestriction or() {
         if(this.restrictionExpressionList.size() > 0){
