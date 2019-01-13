@@ -56,7 +56,7 @@ public class Test {
 
     private static String getSelectQuery4(){
         return new SelectQuery()
-                .addColumns(new Columns("id"))
+                .columns(new Columns("id"))
                 .addRestrictions(
                         new ComparisonRestriction()
                         .eq("name", "Mohit")
@@ -83,14 +83,14 @@ public class Test {
         List<String> as = new ArrayList<>();
         as.add("ID");
         return new SelectQuery()
-                .addColumns(new Columns(columns).as(as))
+                .columns(new Columns(columns).as(as))
                 .createQuery();
     }
 
     private static String getSelectQuery2(){
         return new SelectQuery()
-                .addColumns(new Columns("id", "name").as("ID", "NAME"))
-                .addOrdering("_ts", DESC)
+                .columns(new Columns("id", "name").as("ID", "NAME"))
+                .orderBy("_ts", DESC)
                 .limitResults(5)
                 .createQuery();
     }
