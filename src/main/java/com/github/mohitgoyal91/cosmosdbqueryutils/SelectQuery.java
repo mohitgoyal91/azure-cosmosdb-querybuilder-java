@@ -488,4 +488,9 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
         aggregateFunctions.add(new AggregateFunction().avg(propertyName, alias, udf));
         return this;
     }
+
+    @Override
+    public SelectQuery arrayContains(String propertyName, Object value) {
+        return addRestrictions(new RestrictionBuilder().arrayContains(propertyName, value));
+    }
 }

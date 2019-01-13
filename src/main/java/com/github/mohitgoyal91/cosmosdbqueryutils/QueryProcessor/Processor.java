@@ -74,13 +74,10 @@ public class Processor {
 
     private void processColumns() {
         if(!selectQuery.getAggregateFunctions().isEmpty()){
-            selectQuery.getColumns().getColumns().remove(ALL);
             processAggregateColumns();
-            if(!selectQuery.getColumns().getColumns().isEmpty()){
-                queryBuilder.append(COMMA);
-            }
+        }else{
+            processSimpleColumns();
         }
-        processSimpleColumns();
     }
 
     private void processAggregateColumns() {
@@ -95,8 +92,6 @@ public class Processor {
     private void processSimpleColumns() {
         if(selectQuery.getColumns().getColumns().size() == 1){
             appendColumn();
-        } else if(selectQuery.getColumns().getColumns().isEmpty()){
-
         } else {
             appendColumns();
         }

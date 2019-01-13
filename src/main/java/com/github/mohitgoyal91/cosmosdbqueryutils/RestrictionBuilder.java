@@ -1,10 +1,7 @@
 package com.github.mohitgoyal91.cosmosdbqueryutils;
 
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
-import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.ArithmeticRestriction;
-import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.ComparisonRestriction;
-import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.GeoSpatialRestriction;
-import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.INRestriction;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.*;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.*;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 
@@ -250,5 +247,10 @@ public class RestrictionBuilder extends RestrictionExtractor {
     @Override
     public GeoSpatialRestriction within(String propertyName, GeoSpatialObject geoSpatialObject) {
         return new GeoSpatialRestriction().within(propertyName, geoSpatialObject);
+    }
+
+    @Override
+    public ArrayRestriction arrayContains(String propertyName, Object value) {
+        return new ArrayRestriction().arrayContains(propertyName, value);
     }
 }
