@@ -5,6 +5,7 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.models.Columns;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.Order;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.*;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.*;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 
@@ -13,7 +14,8 @@ import java.util.List;
 
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
-public class SelectQuery implements RestrictionExtractor{
+public class SelectQuery implements RestrictionExtractor, ComparisonRestrictionExtractor, ArithmeticRestrictionExtractor
+        , INRestrictionExtractor, GeoSpatialRestrictionExtractor {
 
     private boolean isCount;
     private Integer limit;
@@ -169,7 +171,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery in(String propertyName, Object... values) {
-        return addRestrictions(new INRestriction().in(propertyName, values));
+        return addRestrictions(new RestrictionBuilder().in(propertyName, values));
     }
 
     /**
@@ -190,7 +192,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery eq(String propertyName, Object value) {
-        return addRestrictions(new ComparisonRestriction().eq(propertyName, value));
+        return addRestrictions(new RestrictionBuilder().eq(propertyName, value));
     }
 
     /**
@@ -201,7 +203,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery notEq(String propertyName, Object value) {
-        return addRestrictions(new ComparisonRestriction().notEq(propertyName, value));
+        return addRestrictions(new RestrictionBuilder().notEq(propertyName, value));
     }
 
     /**
@@ -212,7 +214,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery lt(String propertyName, Object value) {
-        return addRestrictions(new ComparisonRestriction().lt(propertyName, value));
+        return addRestrictions(new RestrictionBuilder().lt(propertyName, value));
     }
 
     /**
@@ -223,7 +225,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery lte(String propertyName, Object value) {
-        return addRestrictions(new ComparisonRestriction().lte(propertyName, value));
+        return addRestrictions(new RestrictionBuilder().lte(propertyName, value));
     }
 
     /**
@@ -234,7 +236,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery gt(String propertyName, Object value) {
-        return addRestrictions(new ComparisonRestriction().gt(propertyName, value));
+        return addRestrictions(new RestrictionBuilder().gt(propertyName, value));
     }
 
     /**
@@ -245,7 +247,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery gte(String propertyName, Object value) {
-        return addRestrictions(new ComparisonRestriction().gte(propertyName, value));
+        return addRestrictions(new RestrictionBuilder().gte(propertyName, value));
     }
 
     /**
@@ -257,7 +259,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery eq(Double value, String expression, Object... parameters) {
-        return addRestrictions(new ArithmeticRestriction().eq(value, expression, parameters));
+        return addRestrictions(new RestrictionBuilder().eq(value, expression, parameters));
     }
 
     /**
@@ -269,7 +271,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery notEq(Double value, String expression, Object... parameters) {
-        return addRestrictions(new ArithmeticRestriction().notEq(value, expression, parameters));
+        return addRestrictions(new RestrictionBuilder().notEq(value, expression, parameters));
     }
 
     /**
@@ -281,7 +283,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery lt(Double value, String expression, Object... parameters) {
-        return addRestrictions(new ArithmeticRestriction().lt(value, expression, parameters));
+        return addRestrictions(new RestrictionBuilder().lt(value, expression, parameters));
     }
 
     /**
@@ -293,7 +295,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery lte(Double value, String expression, Object... parameters) {
-        return addRestrictions(new ArithmeticRestriction().lte(value, expression, parameters));
+        return addRestrictions(new RestrictionBuilder().lte(value, expression, parameters));
     }
 
     /**
@@ -305,7 +307,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery gt(Double value, String expression, Object... parameters) {
-        return addRestrictions(new ArithmeticRestriction().gt(value, expression, parameters));
+        return addRestrictions(new RestrictionBuilder().gt(value, expression, parameters));
     }
 
     /**
@@ -317,7 +319,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery gte(Double value, String expression, Object... parameters) {
-        return addRestrictions(new ArithmeticRestriction().gte(value, expression, parameters));
+        return addRestrictions(new RestrictionBuilder().gte(value, expression, parameters));
     }
 
     /**
@@ -329,7 +331,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery eq(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
-        return addRestrictions(new GeoSpatialRestriction().eq(propertyName, geoSpatialObject, value));
+        return addRestrictions(new RestrictionBuilder().eq(propertyName, geoSpatialObject, value));
     }
 
     /**
@@ -341,7 +343,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery notEq(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
-        return addRestrictions(new GeoSpatialRestriction().notEq(propertyName, geoSpatialObject, value));
+        return addRestrictions(new RestrictionBuilder().notEq(propertyName, geoSpatialObject, value));
     }
 
     /**
@@ -353,7 +355,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery lt(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
-        return addRestrictions(new GeoSpatialRestriction().lt(propertyName, geoSpatialObject, value));
+        return addRestrictions(new RestrictionBuilder().lt(propertyName, geoSpatialObject, value));
     }
 
     /**
@@ -365,7 +367,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery lte(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
-        return addRestrictions(new GeoSpatialRestriction().lte(propertyName, geoSpatialObject, value));
+        return addRestrictions(new RestrictionBuilder().lte(propertyName, geoSpatialObject, value));
     }
 
     /**
@@ -377,7 +379,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery gt(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
-        return addRestrictions(new GeoSpatialRestriction().gt(propertyName, geoSpatialObject, value));
+        return addRestrictions(new RestrictionBuilder().gt(propertyName, geoSpatialObject, value));
     }
 
     /**
@@ -389,7 +391,7 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery gte(String propertyName, GeoSpatialObject geoSpatialObject, Double value) {
-        return addRestrictions(new GeoSpatialRestriction().gte(propertyName, geoSpatialObject, value));
+        return addRestrictions(new RestrictionBuilder().gte(propertyName, geoSpatialObject, value));
     }
 
     /**
@@ -400,6 +402,6 @@ public class SelectQuery implements RestrictionExtractor{
      */
     @Override
     public SelectQuery within(String propertyName, GeoSpatialObject geoSpatialObject) {
-        return addRestrictions(new GeoSpatialRestriction().within(propertyName, geoSpatialObject));
+        return addRestrictions(new RestrictionBuilder().within(propertyName, geoSpatialObject));
     }
 }

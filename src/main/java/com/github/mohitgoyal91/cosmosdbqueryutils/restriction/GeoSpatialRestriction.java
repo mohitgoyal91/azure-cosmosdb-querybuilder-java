@@ -2,6 +2,7 @@ package com.github.mohitgoyal91.cosmosdbqueryutils.restriction;
 
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionexpressions.GeoSpatialRestrictionExpression;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.GeoSpatialRestrictionExtractor;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.FUNCTION.GEOSPATIAL.*;
@@ -9,7 +10,7 @@ import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Ope
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.AND;
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
-public class GeoSpatialRestriction extends Restriction {
+public class GeoSpatialRestriction extends Restriction implements GeoSpatialRestrictionExtractor {
 
     /**
      * To introduce a ST_DISTANCE restriction in the query with a {@literal =}
@@ -18,6 +19,7 @@ public class GeoSpatialRestriction extends Restriction {
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
+    @Override
     public GeoSpatialRestriction eq(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, EQUAL);
@@ -31,6 +33,7 @@ public class GeoSpatialRestriction extends Restriction {
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
+    @Override
     public GeoSpatialRestriction notEq(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, NOT_EQUAL);
@@ -44,6 +47,7 @@ public class GeoSpatialRestriction extends Restriction {
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
+    @Override
     public GeoSpatialRestriction lt(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, LESS_THAN);
@@ -57,6 +61,7 @@ public class GeoSpatialRestriction extends Restriction {
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
+    @Override
     public GeoSpatialRestriction lte(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, LESS_THAN_EQUAL);
@@ -70,6 +75,7 @@ public class GeoSpatialRestriction extends Restriction {
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
+    @Override
     public GeoSpatialRestriction gt(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, GREATER_THAN);
@@ -83,6 +89,7 @@ public class GeoSpatialRestriction extends Restriction {
      * @param value distance value which should be compared
      * @return current instance of GeoSpatialRestriction
      */
+    @Override
     public GeoSpatialRestriction gte(String propertyName, GeoSpatialObject geoSpatialObject, Double value){
         updateFunctionAndValue(geoSpatialObject, value, ST_DISTANCE);
         addRestriction(propertyName, geoSpatialObject, GREATER_THAN_EQUAL);
@@ -95,6 +102,7 @@ public class GeoSpatialRestriction extends Restriction {
      * @param geoSpatialObject GeoSpatialObject
      * @return current instance of GeoSpatialRestriction
      */
+    @Override
     public GeoSpatialRestriction within(String propertyName, GeoSpatialObject geoSpatialObject){
         updateFunction(geoSpatialObject, ST_WITHIN);
         addRestriction(propertyName, geoSpatialObject, null);

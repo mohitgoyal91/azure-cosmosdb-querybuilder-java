@@ -1,6 +1,7 @@
 package com.github.mohitgoyal91.cosmosdbqueryutils.restriction;
 
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionexpressions.INRestrictionExpression;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.INRestrictionExtractor;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class INRestriction extends Restriction {
+public class INRestriction extends Restriction implements INRestrictionExtractor {
 
     /**
      * To introduce an in restriction in the query
@@ -28,6 +29,7 @@ public class INRestriction extends Restriction {
      * @param values values separated by comma ','
      * @return current instance of INRestriction
      */
+    @Override
     public INRestriction in(String propertyName, Object... values){
         addRestriction(propertyName, values, Constants.Operators.Comparison.IN);
         return this;

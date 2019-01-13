@@ -1,12 +1,13 @@
 package com.github.mohitgoyal91.cosmosdbqueryutils.restriction;
 
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionexpressions.ComparisonRestrictionExpression;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.ComparisonRestrictionExtractor;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 
 import java.util.Optional;
 
-public class ComparisonRestriction extends Restriction {
+public class ComparisonRestriction extends Restriction implements ComparisonRestrictionExtractor {
 
     /**
      * To introduce a {@literal =} restriction in the query
@@ -14,6 +15,7 @@ public class ComparisonRestriction extends Restriction {
      * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
+    @Override
     public ComparisonRestriction eq(String propertyName, Object value){
         addRestriction(propertyName, value, Constants.Operators.Comparison.EQUAL);
         return this;
@@ -25,6 +27,7 @@ public class ComparisonRestriction extends Restriction {
      * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
+    @Override
     public ComparisonRestriction notEq(String propertyName, Object value){
         addRestriction(propertyName, value, Constants.Operators.Comparison.NOT_EQUAL);
         return this;
@@ -36,6 +39,7 @@ public class ComparisonRestriction extends Restriction {
      * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
+    @Override
     public ComparisonRestriction lt(String propertyName, Object value){
         addRestriction(propertyName, value, Constants.Operators.Comparison.LESS_THAN);
         return this;
@@ -47,6 +51,7 @@ public class ComparisonRestriction extends Restriction {
      * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
+    @Override
     public ComparisonRestriction lte(String propertyName, Object value){
         addRestriction(propertyName, value, Constants.Operators.Comparison.LESS_THAN_EQUAL);
         return this;
@@ -58,6 +63,7 @@ public class ComparisonRestriction extends Restriction {
      * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
+    @Override
     public ComparisonRestriction gt(String propertyName, Object value){
         addRestriction(propertyName, value, Constants.Operators.Comparison.GREATER_THAN);
         return this;
@@ -69,6 +75,7 @@ public class ComparisonRestriction extends Restriction {
      * @param value value which needs to be compared
      * @return current instance of ComparisonRestriction
      */
+    @Override
     public ComparisonRestriction gte(String propertyName, Object value){
         addRestriction(propertyName, value, Constants.Operators.Comparison.GREATER_THAN_EQUAL);
         return this;

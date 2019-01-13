@@ -1,13 +1,14 @@
 package com.github.mohitgoyal91.cosmosdbqueryutils.restriction;
 
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionexpressions.ArithmeticRestrictionExpression;
+import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.ArithmeticRestrictionExtractor;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArithmeticRestriction extends Restriction{
+public class ArithmeticRestriction extends Restriction implements ArithmeticRestrictionExtractor {
 
     /**
      * To introduce an arithmetic restriction in the query with {@literal =}
@@ -16,6 +17,7 @@ public class ArithmeticRestriction extends Restriction{
      * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
+    @Override
     public ArithmeticRestriction eq(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.EQUAL);
         return this;
@@ -28,6 +30,7 @@ public class ArithmeticRestriction extends Restriction{
      * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
+    @Override
     public ArithmeticRestriction notEq(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.NOT_EQUAL);
         return this;
@@ -40,6 +43,7 @@ public class ArithmeticRestriction extends Restriction{
      * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
+    @Override
     public ArithmeticRestriction lt(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.LESS_THAN);
         return this;
@@ -52,6 +56,7 @@ public class ArithmeticRestriction extends Restriction{
      * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
+    @Override
     public ArithmeticRestriction lte(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.LESS_THAN_EQUAL);
         return this;
@@ -64,6 +69,7 @@ public class ArithmeticRestriction extends Restriction{
      * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
+    @Override
     public ArithmeticRestriction gt(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.GREATER_THAN);
         return this;
@@ -76,6 +82,7 @@ public class ArithmeticRestriction extends Restriction{
      * @param parameters sequence of parameters and values
      * @return current instance of ArithmeticRestriction
      */
+    @Override
     public ArithmeticRestriction gte(Double value, String expression, Object... parameters){
         addRestriction(expression, updatedValue(value, parameters), Constants.Operators.Comparison.GREATER_THAN_EQUAL);
         return this;
