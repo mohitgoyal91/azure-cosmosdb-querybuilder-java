@@ -1,5 +1,7 @@
 package com.github.mohitgoyal91.cosmosdbqueryutils;
 
+import com.github.mohitgoyal91.cosmosdbqueryutils.Aggregate.AggregateExtractorMin;
+import com.github.mohitgoyal91.cosmosdbqueryutils.Aggregate.AggregateFunction;
 import com.github.mohitgoyal91.cosmosdbqueryutils.QueryProcessor.Processor;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.Columns;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
@@ -14,11 +16,12 @@ import java.util.List;
 
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
-public class SelectQuery extends RestrictionExtractor {
+public class SelectQuery extends RestrictionExtractor implements AggregateExtractorMin {
 
     private boolean isCount;
     private Integer limit;
     private Columns columns = new Columns();
+    private List<AggregateFunction> aggregateFunctions = new ArrayList<>();
     private List<GroupedRestriction> restrictions = new ArrayList();
     private Order order;
 
@@ -46,6 +49,10 @@ public class SelectQuery extends RestrictionExtractor {
 
     public Order getOrder() {
         return order;
+    }
+
+    public List<AggregateFunction> getAggregateFunctions() {
+        return aggregateFunctions;
     }
 
     /**
@@ -402,5 +409,88 @@ public class SelectQuery extends RestrictionExtractor {
     @Override
     public SelectQuery within(String propertyName, GeoSpatialObject geoSpatialObject) {
         return addRestrictions(new RestrictionBuilder().within(propertyName, geoSpatialObject));
+    }
+
+    @Override
+    public SelectQuery count(String propertyName) {
+        return count(propertyName, propertyName, null);
+    }
+
+    @Override
+    public SelectQuery count(String propertyName, String alias) {
+        return count(propertyName, alias, null);
+    }
+
+    @Override
+    public SelectQuery count(String propertyName, String alias, String udf) {
+        aggregateFunctions.add(new AggregateFunction().count(propertyName, alias, udf));
+        return this;
+    }
+
+    @Override
+    public SelectQuery min(String propertyName) {
+        return min(propertyName, propertyName, null);
+    }
+
+    @Override
+    public SelectQuery min(String propertyName, String alias) {
+        return min(propertyName, alias, null);
+    }
+
+    @Override
+    public SelectQuery min(String propertyName, String alias, String udf) {
+        aggregateFunctions.add(new AggregateFunction().min(propertyName, alias, udf));
+        return this;
+    }
+
+    @Override
+    public SelectQuery max(String propertyName) {
+        return max(propertyName, propertyName, null);
+    }
+
+
+    @Override
+    public SelectQuery max(String propertyName, String alias) {
+        return max(propertyName, alias, null);
+    }
+
+    @Override
+    public SelectQuery max(String propertyName, String alias, String udf) {
+        aggregateFunctions.add(new AggregateFunction().max(propertyName, alias, udf));
+        return this;
+    }
+
+    @Override
+    public SelectQuery sum(String propertyName) {
+        return sum(propertyName, propertyName, null);
+    }
+
+
+    @Override
+    public SelectQuery sum(String propertyName, String alias) {
+        return sum(propertyName, alias, null);
+    }
+
+    @Override
+    public SelectQuery sum(String propertyName, String alias, String udf) {
+        aggregateFunctions.add(new AggregateFunction().sum(propertyName, alias, udf));
+        return this;
+    }
+
+    @Override
+    public SelectQuery avg(String propertyName) {
+        return avg(propertyName, propertyName, null);
+    }
+
+
+    @Override
+    public SelectQuery avg(String propertyName, String alias) {
+        return avg(propertyName, alias, null);
+    }
+
+    @Override
+    public SelectQuery avg(String propertyName, String alias, String udf) {
+        aggregateFunctions.add(new AggregateFunction().avg(propertyName, alias, udf));
+        return this;
     }
 }

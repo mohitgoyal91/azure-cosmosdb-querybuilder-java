@@ -1,5 +1,6 @@
 package com.github.mohitgoyal91.cosmosdbqueryutils.QueryProcessor;
 
+import com.github.mohitgoyal91.cosmosdbqueryutils.Aggregate.Aggregate;
 import com.github.mohitgoyal91.cosmosdbqueryutils.SelectQuery;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.Restriction;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
@@ -7,6 +8,8 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 import java.util.Optional;
 
 import static com.github.mohitgoyal91.cosmosdbqueryutils.restriction.Restriction.filterRestrictions;
+import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.GENERAL.ALL;
+import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.GENERAL.COMMA;
 
 public class Processor {
 
@@ -70,8 +73,30 @@ public class Processor {
     }
 
     private void processColumns() {
+        if(!selectQuery.getAggregateFunctions().isEmpty()){
+            selectQuery.getColumns().getColumns().remove(ALL);
+            processAggregateColumns();
+            if(!selectQuery.getColumns().getColumns().isEmpty()){
+                queryBuilder.append(COMMA);
+            }
+        }
+        processSimpleColumns();
+    }
+
+    private void processAggregateColumns() {
+        int i;
+        for(i=0; i<selectQuery.getAggregateFunctions().size()-1; i++){
+            Aggregate.appendAggregateExpression(selectQuery.getAggregateFunctions().get(i), queryBuilder);
+            queryBuilder.append(COMMA);
+        }
+        Aggregate.appendAggregateExpression(selectQuery.getAggregateFunctions().get(i), queryBuilder);
+    }
+
+    private void processSimpleColumns() {
         if(selectQuery.getColumns().getColumns().size() == 1){
             appendColumn();
+        } else if(selectQuery.getColumns().getColumns().isEmpty()){
+
         } else {
             appendColumns();
         }
@@ -81,7 +106,7 @@ public class Processor {
         int i;
         for(i=0; i<selectQuery.getColumns().getColumns().size()-1; i++){
             appendColumnToQuery(selectQuery.getColumns().getColumns().get(i), getAlias(i));
-            queryBuilder.append(Constants.GENERAL.COMMA);
+            queryBuilder.append(COMMA);
         }
         appendColumnToQuery(selectQuery.getColumns().getColumns().get(i), getAlias(i));
     }

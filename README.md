@@ -90,3 +90,13 @@ return new SelectQuery()
                 )
                 .createQuery();
 ```
+
+SELECT MAX ( C.age) AS age, SUM ( C.life) AS life, MIN (udf.convertToInt( C.failure) ) AS failure, C.hello FROM C
+```java
+return new SelectQuery()
+                .columns(new Columns("hello"))
+                .max("age", "age", null)
+                .sum("life")
+                .min("failure", "failure", "convertToInt")
+                .createQuery();
+```

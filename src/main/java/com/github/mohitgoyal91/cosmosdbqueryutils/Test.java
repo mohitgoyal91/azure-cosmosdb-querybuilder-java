@@ -44,6 +44,17 @@ public class Test {
         /*
         * SELECT * FROM C WHERE ( C.pid = 123) OR ( ( C.age >= 15) OR ( C.age < 29) )*/
         System.out.println("Test Query 6: " + getSelectQuery6());
+
+        System.out.println("Test Query 7: " + getSelectQuery7());
+    }
+
+    private static String getSelectQuery7() {
+        return new SelectQuery()
+                .columns(new Columns("hello"))
+                .max("age", "age", null)
+                .sum("life")
+                .min("failure", "failure", "convertToInt")
+                .createQuery();
     }
 
     private static String getSelectQuery6() {

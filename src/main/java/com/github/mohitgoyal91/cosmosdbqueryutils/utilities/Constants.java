@@ -21,6 +21,7 @@ public class Constants {
         public static final String WHERE = " WHERE ";
         public static final String ORDER_BY = " ORDER BY ";
         public static final String CURLY_BRACKETS_REGEX = "\\{\\}";
+        public static final String UDF = "udf";
     }
 
     public enum GeoSpatialTypes{
