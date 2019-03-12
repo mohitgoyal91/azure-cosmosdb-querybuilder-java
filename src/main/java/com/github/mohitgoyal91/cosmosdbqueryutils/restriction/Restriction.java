@@ -94,7 +94,7 @@ public abstract class Restriction<T> implements RestrictionInterface, AddRestric
 
     private static <T> void appendRestriction(T restriction, StringBuilder queryBuilder) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         queryBuilder.append(Constants.GENERAL.BRACKET_OPEN);
-        int i = 0;
+        int i;
         for(i=0; i<((Restriction)restriction).getRestrictionExpressionList().size()-1; i++){
             T restrictionExpression = ((List<T>)((Restriction)restriction).getRestrictionExpressionList()).get(i);
             appendRestrictionExpression(restrictionExpression, queryBuilder);
