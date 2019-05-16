@@ -253,4 +253,14 @@ public class RestrictionBuilder extends RestrictionExtractor {
     public ArrayRestriction arrayContains(String propertyName, Object value) {
         return new ArrayRestriction().arrayContains(propertyName, value);
     }
+
+    @Override
+    public TypeCheckRestriction isDefined(String propertyName) {
+        return new TypeCheckRestriction().isDefined(propertyName);
+    }
+
+    @Override
+    public TypeCheckRestriction isNotDefined(String propertyName) {
+        return new TypeCheckRestriction().isNotDefined(propertyName);
+    }
 }

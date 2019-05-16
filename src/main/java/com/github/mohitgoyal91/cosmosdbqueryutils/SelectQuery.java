@@ -13,6 +13,7 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
@@ -90,9 +91,17 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
      * @return current instance of SelectQuery
      */
     public SelectQuery addRestrictions(Restriction... restrictions){
-        GroupedRestriction groupedRestriction = new GroupedRestriction(restrictions);
+        if(Optional.ofNullable(restrictions).isPresent()){
+            List<Restriction> _restrictions = new ArrayList<>();
+            for(Restriction restriction : restrictions){
+                if(Optional.ofNullable(restriction).isPresent()){
+                    _restrictions.add(restriction);
+                }
+            }
+            GroupedRestriction groupedRestriction = new GroupedRestriction(_restrictions.toArray());
 
-        this.restrictions.add(groupedRestriction);
+            this.restrictions.add(groupedRestriction);
+        }
         return this;
     }
 
@@ -492,5 +501,15 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
     @Override
     public SelectQuery arrayContains(String propertyName, Object value) {
         return addRestrictions(new RestrictionBuilder().arrayContains(propertyName, value));
+    }
+
+    @Override
+    public SelectQuery isDefined(String propertyName) {
+        return addRestrictions(new RestrictionBuilder().isDefined(propertyName));
+    }
+
+    @Override
+    public SelectQuery isNotDefined(String propertyName) {
+        return addRestrictions(new RestrictionBuilder().isNotDefined(propertyName));
     }
 }

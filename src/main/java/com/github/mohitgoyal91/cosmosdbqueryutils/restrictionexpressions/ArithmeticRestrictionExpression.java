@@ -12,7 +12,7 @@ public class ArithmeticRestrictionExpression extends RestrictionExpression{
         super(propertyName, value, operation, logicalCombiner);
     }
 
-    public ArithmeticRestrictionExpression(ComparisonRestrictionExpression previousExpression, String nextLogicalCombiner){
+    public ArithmeticRestrictionExpression(ArithmeticRestrictionExpression previousExpression, String nextLogicalCombiner){
         super(previousExpression, nextLogicalCombiner);
     }
 

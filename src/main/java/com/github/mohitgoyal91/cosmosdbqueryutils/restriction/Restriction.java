@@ -9,6 +9,7 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class Restriction<T> implements RestrictionInterface, AddRestrictionInterface {
 
@@ -53,10 +54,12 @@ public abstract class Restriction<T> implements RestrictionInterface, AddRestric
             List<Restriction> _restrictions = new ArrayList<>();
             List<Restriction> restrictionList = groupedRestriction.getRestrictions();
             for(Restriction restriction : restrictionList){
+                if(Optional.ofNullable(restriction).isPresent()){
                     if(!(restriction).getRestrictionExpressionList().isEmpty()){
                         restriction.setLogicalCombiner(((RestrictionExpression) RestrictionHelper.getLastElementFromList(restriction.getRestrictionExpressionList())).getLogicalCombiner());
                         _restrictions.add(restriction);
                     }
+                }
             }
             if(!_restrictions.isEmpty()){
                groupedRestriction.setRestrictions(_restrictions);
