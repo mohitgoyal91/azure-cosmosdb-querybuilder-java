@@ -1,8 +1,9 @@
 language: java
 sudo: false # faster builds
 
+install: true
 script:
-- mvn clean  compile package deploy -X
+- mvn clean compile package deploy -X
 cache:
   directories:
   - $HOME/.m2
