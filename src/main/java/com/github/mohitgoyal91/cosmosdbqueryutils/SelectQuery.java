@@ -145,7 +145,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
      * @return current instance of SelectQuery
      */
     public SelectQuery orderByTS(Constants.Order order){
-        return orderBy(Constants.GENERAL._TS, Constants.Order.DESC);
+        return orderBy(Constants.GENERAL._TS, order);
     }
 
     /**
