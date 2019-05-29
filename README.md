@@ -1,5 +1,5 @@
 # Azure Cosmos DB SQL Query Generator
-[![Maven Central](https://img.shields.io/badge/maven--central-1.6.6-orange.svg)](https://search.maven.org/artifact/com.github.mohitgoyal91/cosmosdbquery-utils/1.6.6/jar)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.mohitgoyal91/cosmosdbquery-utils/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.mohitgoyal91/cosmosdbquery-utils)
 [![Build Status](https://api.travis-ci.org/mohitgoyal91/azure-cosmosdb-querybuilder-java.svg?branch=master)](https://travis-ci.org/mohitgoyal91/azure-cosmosdb-querybuilder-java)
 [![Known Vulnerabilities](https://snyk.io/test/github/mohitgoyal91/azure-cosmosdb-querybuilder-java/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/mohitgoyal91/azure-cosmosdb-querybuilder-java?targetFile=pom.xml)
 
