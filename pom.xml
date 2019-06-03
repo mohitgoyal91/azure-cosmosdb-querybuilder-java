@@ -73,7 +73,6 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <fork>true</fork>
-                    <executable>C:\Program Files\Java\jdk1.8.0_191\bin\javac</executable>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
