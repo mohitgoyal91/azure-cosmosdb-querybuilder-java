@@ -2,7 +2,6 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.mohitgoyal91/cosmosdbquery-utils/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.mohitgoyal91/cosmosdbquery-utils)
 [![Build Status](https://api.travis-ci.org/mohitgoyal91/azure-cosmosdb-querybuilder-java.svg?branch=master)](https://travis-ci.org/mohitgoyal91/azure-cosmosdb-querybuilder-java)
 [![Known Vulnerabilities](https://snyk.io/test/github/mohitgoyal91/azure-cosmosdb-querybuilder-java/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/mohitgoyal91/azure-cosmosdb-querybuilder-java?targetFile=pom.xml)
-[![Coverage Status](https://coveralls.io/repos/github/mohitgoyal91/azure-cosmosdb-querybuilder-java/badge.svg?branch=master)](https://coveralls.io/github/mohitgoyal91/azure-cosmosdb-querybuilder-java?branch=master)
 
 This project provides a client, tools or utilities in Java that makes it easy to generate Azure CosmosDB SQL Queries effectively in an organised way. 
 
