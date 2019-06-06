@@ -10,13 +10,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * The type In restriction.
+ */
 public class INRestriction extends Restriction implements INRestrictionExtractor {
 
     /**
      * To introduce an in restriction in the query
+     *
+     * @param <T>          type
      * @param propertyName property on which the restriction needs to be applied
-     * @param values values separated by comma ','
-     * @param <T> type
+     * @param values       values separated by comma ','
      * @return current instance of INRestriction
      */
     public <T> INRestriction in(String propertyName, List<T> values){

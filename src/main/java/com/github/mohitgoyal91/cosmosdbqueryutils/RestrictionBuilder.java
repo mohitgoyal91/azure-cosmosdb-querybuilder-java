@@ -5,6 +5,9 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.*;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.*;
 import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants;
 
+/**
+ * The type Restriction builder.
+ */
 public class RestrictionBuilder extends RestrictionExtractor {
 
     /**

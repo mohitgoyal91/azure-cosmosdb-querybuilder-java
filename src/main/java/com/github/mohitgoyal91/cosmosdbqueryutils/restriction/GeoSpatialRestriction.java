@@ -10,6 +10,9 @@ import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Ope
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.AND;
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
+/**
+ * The type Geo spatial restriction.
+ */
 public class GeoSpatialRestriction extends Restriction implements GeoSpatialRestrictionExtractor {
 
     /**

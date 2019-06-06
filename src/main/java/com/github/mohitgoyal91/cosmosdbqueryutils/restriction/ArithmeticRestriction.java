@@ -8,6 +8,9 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Arithmetic restriction.
+ */
 public class ArithmeticRestriction extends Restriction implements ArithmeticRestrictionExtractor {
 
     /**

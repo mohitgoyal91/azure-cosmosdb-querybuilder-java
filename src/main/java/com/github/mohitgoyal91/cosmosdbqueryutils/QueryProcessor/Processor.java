@@ -11,15 +11,28 @@ import static com.github.mohitgoyal91.cosmosdbqueryutils.restriction.Restriction
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.GENERAL.ALL;
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.GENERAL.COMMA;
 
+/**
+ * The type Processor.
+ */
 public class Processor {
 
     private StringBuilder queryBuilder = new StringBuilder();
     private SelectQuery selectQuery;
 
+    /**
+     * Instantiates a new Processor.
+     *
+     * @param selectQuery the select query
+     */
     public Processor(SelectQuery selectQuery) {
         this.selectQuery = selectQuery;
     }
 
+    /**
+     * Process query string.
+     *
+     * @return the string
+     */
     public String processQuery() {
         queryBuilder.append(Constants.GENERAL.SELECT);
         if(selectQuery.isCount()){

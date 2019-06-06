@@ -8,6 +8,9 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.FUNCTION.TYPECHECKING.IS_DEFINED;
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.NOT;
 
+/**
+ * The type Type check restriction.
+ */
 public class TypeCheckRestriction extends Restriction implements TypeCheckRestrictionExtractor {
 
     @Override

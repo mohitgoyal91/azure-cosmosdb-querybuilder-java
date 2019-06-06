@@ -2,6 +2,9 @@ package com.github.mohitgoyal91.cosmosdbqueryutils.Aggregate;
 
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.FUNCTION.AGGREGATE.*;
 
+/**
+ * The type Aggregate function.
+ */
 public class AggregateFunction implements AggregateExtractor{
 
     private String propertyName;
@@ -9,18 +12,38 @@ public class AggregateFunction implements AggregateExtractor{
     private String aggregator;
     private String udf;
 
+    /**
+     * Gets property name.
+     *
+     * @return the property name
+     */
     public String getPropertyName() {
         return propertyName;
     }
 
+    /**
+     * Gets alias.
+     *
+     * @return the alias
+     */
     public String getAlias() {
         return alias;
     }
 
+    /**
+     * Gets aggregator.
+     *
+     * @return the aggregator
+     */
     public String getAggregator() {
         return aggregator;
     }
 
+    /**
+     * Gets udf.
+     *
+     * @return the udf
+     */
     public String getUdf() {
         return udf;
     }

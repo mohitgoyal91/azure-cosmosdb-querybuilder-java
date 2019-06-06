@@ -7,6 +7,9 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.utilities.RestrictionHelper;
 
 import java.util.Optional;
 
+/**
+ * The type Comparison restriction.
+ */
 public class ComparisonRestriction extends Restriction implements ComparisonRestrictionExtractor {
 
     /**

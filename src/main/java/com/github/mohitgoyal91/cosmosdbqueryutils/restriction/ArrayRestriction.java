@@ -9,6 +9,9 @@ import java.util.Optional;
 
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.FUNCTION.ARRAYTYPE.ARRAY_CONTAINS;
 
+/**
+ * The type Array restriction.
+ */
 public class ArrayRestriction extends Restriction implements ArrayFunctionsExtractor {
 
     @Override

@@ -17,6 +17,9 @@ import java.util.Optional;
 
 import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Operators.Logical.OR;
 
+/**
+ * The type Select query.
+ */
 public class SelectQuery extends RestrictionExtractor implements AggregateExtractorMin {
 
     private boolean isCount;
@@ -32,33 +35,64 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
     public SelectQuery(){
     }
 
+    /**
+     * Is count boolean.
+     *
+     * @return the boolean
+     */
     public boolean isCount() {
         return isCount;
     }
 
+    /**
+     * Gets limit.
+     *
+     * @return the limit
+     */
     public Integer getLimit() {
         return limit;
     }
 
+    /**
+     * Gets columns.
+     *
+     * @return the columns
+     */
     public Columns getColumns() {
         return columns;
     }
 
+    /**
+     * Gets restrictions.
+     *
+     * @return the restrictions
+     */
     public List<GroupedRestriction> getRestrictions() {
         return restrictions;
     }
 
+    /**
+     * Gets order.
+     *
+     * @return the order
+     */
     public Order getOrder() {
         return order;
     }
 
+    /**
+     * Gets aggregate functions.
+     *
+     * @return the aggregate functions
+     */
     public List<AggregateFunction> getAggregateFunctions() {
         return aggregateFunctions;
     }
 
     /**
      * To build the query
-     * @return Query
+     *
+     * @return Query string
      */
     public String createQuery(){
         Processor processor = new Processor(this);
@@ -67,6 +101,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * To add columns
+     *
      * @param columns Object
      * @return current instance of SelectQuery
      */
@@ -77,6 +112,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * To add limit
+     *
      * @param limit total number of results to be fetched
      * @return current instance of SelectQuery
      */
@@ -87,6 +123,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * To add reestrictions
+     *
      * @param restrictions Multiple restrictions to be passed separated by comma ","
      * @return current instance of SelectQuery
      */
@@ -107,6 +144,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * to separate the previous and next restrictions by an 'OR'
+     *
      * @return current instance of SelectQuery
      */
     public SelectQuery or(){
@@ -118,6 +156,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * To add restrictions, with a separation of 'OR' between previous and this restriction
+     *
      * @param restrictions Multiple restrictions to be passed separated by comma ","
      * @return current instance of SelectQuery
      */
@@ -131,6 +170,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * To add restrictions, with a separation of 'AND' between previous and this restriction
+     *
      * @param restrictions Multiple restrictions to be passed separated by comma ","
      * @return current instance of SelectQuery
      */
@@ -141,6 +181,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * Ordering the query by _ts
+     *
      * @param order Enum DESC or ASC
      * @return current instance of SelectQuery
      */
@@ -150,8 +191,9 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * Ordering the query by parameter
+     *
      * @param parameterName parameter by which the query is to be ordered
-     * @param order Enum DESC or ASC
+     * @param order         Enum DESC or ASC
      * @return current instance of SelectQuery
      */
     public SelectQuery orderBy(String parameterName, Constants.Order order) {
@@ -161,6 +203,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * To specify if only the count of rows is required
+     *
      * @return current instance of SelectQuery
      */
     public SelectQuery count() {
@@ -191,8 +234,9 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
 
     /**
      * To introduce an in restriction in the query
+     *
      * @param propertyName property on which the restriction needs to be applied
-     * @param values list of values
+     * @param values       list of values
      * @return current instance of SelectQuery
      */
     public SelectQuery in(String propertyName, List<Object> values) {
