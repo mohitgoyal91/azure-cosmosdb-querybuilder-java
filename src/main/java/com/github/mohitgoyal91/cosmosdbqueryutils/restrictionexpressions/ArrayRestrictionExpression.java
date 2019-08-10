@@ -41,5 +41,6 @@ public class ArrayRestrictionExpression extends RestrictionExpression {
         queryBuilder.append(restrictionExpression.getOperation()).append(BRACKET_OPEN)
                 .append(ALIAS).append(DOT).append(restrictionExpression.getPropertyName()).append(COMMA);
         RestrictionHelper.appendValue(restrictionExpression.getValue(), queryBuilder);
+        queryBuilder.append(BRACKET_CLOSED);
     }
 }
