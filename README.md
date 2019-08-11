@@ -17,7 +17,7 @@ For example, using maven, you can add the following dependency to your maven pom
 <dependency>
   <groupId>com.github.mohitgoyal91</groupId>
   <artifactId>cosmosdbquery-utils</artifactId>
-  <version>1.6.6</version>
+  <version>1.6.8</version>
 </dependency>
 ```
 
