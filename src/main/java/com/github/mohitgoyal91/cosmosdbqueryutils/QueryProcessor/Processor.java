@@ -44,6 +44,7 @@ public class Processor {
         processFrom();
         processRestrictions();
         processOrder();
+        processOffsetLimit();
 
         return queryBuilder.toString().trim().replaceAll("( )+", " ");
     }
@@ -59,6 +60,15 @@ public class Processor {
                         .append(Constants.GENERAL.DOT)
                         .append(order.getParameterName())
                         .append(order.getOrder().getName())
+        );
+    }
+
+    private void processOffsetLimit() {
+        Optional.ofNullable(selectQuery.getOffsetLimit()).ifPresent(offsetLimit -> 
+            queryBuilder.append(Constants.GENERAL.OFFSET)
+                .append(offsetLimit.getOffset())
+                .append(Constants.GENERAL.LIMIT)
+                .append(offsetLimit.getLimit())
         );
     }
 

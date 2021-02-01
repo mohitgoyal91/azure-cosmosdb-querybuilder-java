@@ -5,6 +5,7 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.Aggregate.AggregateFunction;
 import com.github.mohitgoyal91.cosmosdbqueryutils.QueryProcessor.Processor;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.Columns;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.OffsetLimit;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.Order;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.*;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.*;
@@ -28,6 +29,7 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
     private List<AggregateFunction> aggregateFunctions = new ArrayList<>();
     private List<GroupedRestriction> restrictions = new ArrayList();
     private Order order;
+    private OffsetLimit offsetLimit;
 
     /**
      * Creates a new Instance of a SelectQuery
@@ -81,6 +83,14 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
     }
 
     /**
+     * Gets the OFFSET LIMIT clause.
+     * @return the OffsetLimit object
+     */
+    public OffsetLimit getOffsetLimit() {
+        return offsetLimit;
+    }
+
+    /**
      * Gets aggregate functions.
      *
      * @return the aggregate functions
@@ -111,12 +121,15 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
     }
 
     /**
-     * To add limit
+     * To add limit. This will override any existing offset and limit.
      *
      * @param limit total number of results to be fetched
      * @return current instance of SelectQuery
      */
     public SelectQuery limitResults(int limit){
+        // OFFSET LIMIT cannot be used in the same query as TOP
+        this.offsetLimit = null;
+
         this.limit = limit;
         return this;
     }
@@ -199,6 +212,21 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
     public SelectQuery orderBy(String parameterName, Constants.Order order) {
        this.order = new Order(parameterName, order);
        return this;
+    }
+
+    /**
+     * To set query offset and limit. This will override any existing offset and limit.
+     * 
+     * @param offset Number of results to skip
+     * @param limit Maximum number of results
+     * @return current instance of SelectQuery
+     */
+    public SelectQuery offsetAndLimitResults(int offset, int limit) {
+        // TOP cannot be used in the same query as OFFSET LIMIT
+        this.limit = null;
+
+        this.offsetLimit = new OffsetLimit(offset, limit);
+        return this;
     }
 
     /**
