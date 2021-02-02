@@ -5,6 +5,7 @@ import com.github.mohitgoyal91.cosmosdbqueryutils.Aggregate.AggregateFunction;
 import com.github.mohitgoyal91.cosmosdbqueryutils.QueryProcessor.Processor;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.Columns;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.GeoSpatialObject;
+import com.github.mohitgoyal91.cosmosdbqueryutils.models.OffsetLimit;
 import com.github.mohitgoyal91.cosmosdbqueryutils.models.Order;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restriction.*;
 import com.github.mohitgoyal91.cosmosdbqueryutils.restrictionextractors.*;
@@ -22,17 +23,26 @@ import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Ope
  */
 public class SelectQuery extends RestrictionExtractor implements AggregateExtractorMin {
 
-    private boolean isCount;
+    private SelectQueryType type;
     private Integer limit;
     private Columns columns = new Columns();
     private List<AggregateFunction> aggregateFunctions = new ArrayList<>();
     private List<GroupedRestriction> restrictions = new ArrayList();
     private Order order;
+    private OffsetLimit offsetLimit;
+    private String valuePropertyName;
+
+    private enum SelectQueryType {
+        Standard,
+        Count,
+        Value
+    }
 
     /**
      * Creates a new Instance of a SelectQuery
      */
     public SelectQuery(){
+        this.type = SelectQueryType.Standard;
     }
 
     /**
@@ -41,7 +51,15 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
      * @return the boolean
      */
     public boolean isCount() {
-        return isCount;
+        return type == SelectQueryType.Count;
+    }
+
+    /**
+     * Is value boolean
+     * @return the boolean
+     */
+    public boolean isValue() {
+        return type == SelectQueryType.Value;
     }
 
     /**
@@ -81,6 +99,22 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
     }
 
     /**
+     * Gets the OFFSET LIMIT clause.
+     * @return the OffsetLimit object
+     */
+    public OffsetLimit getOffsetLimit() {
+        return offsetLimit;
+    }
+
+    /**
+     * Gets the property name associated with the VALUE clause
+     * @return the propertyName
+     */
+    public String getValuePropertyName() {
+        return valuePropertyName;
+    }
+
+    /**
      * Gets aggregate functions.
      *
      * @return the aggregate functions
@@ -111,12 +145,15 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
     }
 
     /**
-     * To add limit
+     * To add limit. This will override any existing offset and limit.
      *
      * @param limit total number of results to be fetched
      * @return current instance of SelectQuery
      */
     public SelectQuery limitResults(int limit){
+        // OFFSET LIMIT cannot be used in the same query as TOP
+        this.offsetLimit = null;
+
         this.limit = limit;
         return this;
     }
@@ -202,12 +239,38 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
     }
 
     /**
+     * To set query offset and limit. This will override any existing offset and limit.
+     * 
+     * @param offset Number of results to skip
+     * @param limit Maximum number of results
+     * @return current instance of SelectQuery
+     */
+    public SelectQuery offsetAndLimitResults(int offset, int limit) {
+        // TOP cannot be used in the same query as OFFSET LIMIT
+        this.limit = null;
+
+        this.offsetLimit = new OffsetLimit(offset, limit);
+        return this;
+    }
+
+    /**
      * To specify if only the count of rows is required
      *
      * @return current instance of SelectQuery
      */
     public SelectQuery count() {
-        this.isCount = true;
+        this.type = SelectQueryType.Count;
+        return this;
+    }
+
+    /**
+     * To specify if only the value of one property is required
+     * @param propertyName The name of the property
+     * @return current instance of SelectQuery
+     */
+    public SelectQuery valueOf(String propertyName) {
+        this.type = SelectQueryType.Value;
+        this.valuePropertyName = propertyName;
         return this;
     }
 

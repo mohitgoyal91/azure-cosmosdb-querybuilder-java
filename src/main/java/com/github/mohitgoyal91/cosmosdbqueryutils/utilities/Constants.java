@@ -22,6 +22,10 @@ public class Constants {
          */
         public static final String _TS = "_ts";
         /**
+         * The constant VALUE.
+         */
+        public static final String VALUE = " VALUE ";
+        /**
          * The constant VALUE_COUNT.
          */
         public static final String VALUE_COUNT = " VALUE COUNT(1) ";
@@ -85,6 +89,14 @@ public class Constants {
          * The constant UDF.
          */
         public static final String UDF = "udf";
+        /**
+         * The constant OFFSET.
+         */
+        public static final String OFFSET = " OFFSET ";
+        /**
+         * The constant LIMIT.
+         */
+        public static final String LIMIT = " LIMIT ";
     }
 
     /**

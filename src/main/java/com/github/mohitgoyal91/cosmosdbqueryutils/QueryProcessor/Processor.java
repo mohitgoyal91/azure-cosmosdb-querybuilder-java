@@ -37,19 +37,31 @@ public class Processor {
         queryBuilder.append(Constants.GENERAL.SELECT);
         if(selectQuery.isCount()){
             processCount();
-        } else {
+        } else if(selectQuery.isValue()){
+            processLimit();
+            processValue();
+        }
+        else {
             processLimit();
             processColumns();
         }
         processFrom();
         processRestrictions();
         processOrder();
+        processOffsetLimit();
 
         return queryBuilder.toString().trim().replaceAll("( )+", " ");
     }
 
     private void processCount() {
         queryBuilder.append(Constants.GENERAL.VALUE_COUNT);
+    }
+
+    private void processValue() {
+        queryBuilder.append(Constants.GENERAL.VALUE)
+            .append(Constants.GENERAL.ALIAS)
+            .append(Constants.GENERAL.DOT)
+            .append(selectQuery.getValuePropertyName());
     }
 
     private void processOrder() {
@@ -59,6 +71,15 @@ public class Processor {
                         .append(Constants.GENERAL.DOT)
                         .append(order.getParameterName())
                         .append(order.getOrder().getName())
+        );
+    }
+
+    private void processOffsetLimit() {
+        Optional.ofNullable(selectQuery.getOffsetLimit()).ifPresent(offsetLimit -> 
+            queryBuilder.append(Constants.GENERAL.OFFSET)
+                .append(offsetLimit.getOffset())
+                .append(Constants.GENERAL.LIMIT)
+                .append(offsetLimit.getLimit())
         );
     }
 
