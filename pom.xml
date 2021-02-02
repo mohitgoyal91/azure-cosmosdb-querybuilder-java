@@ -3,7 +3,7 @@
 
     <groupId>com.github.mohitgoyal91</groupId>
     <artifactId>cosmosdbquery-utils</artifactId>
-    <version>1.6.10</version>
+    <version>1.6.11-SNAPSHOT</version>
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
     <properties>
@@ -71,7 +71,7 @@
         <connection>scm:git:git://github.com/mohitgoyal91/azure-cosmosdb-querybuilder-java.git</connection>
         <developerConnection>scm:git:git@github.com:mohitgoyal91/azure-cosmosdb-querybuilder-java.git</developerConnection>
         <url>https://github.com/mohitgoyal91/azure-cosmosdb-querybuilder-java</url>
-        <tag>cosmosdbquery-utils-1.6.10</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <build>
