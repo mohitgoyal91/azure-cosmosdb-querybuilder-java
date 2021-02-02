@@ -22,6 +22,10 @@ public class Constants {
          */
         public static final String _TS = "_ts";
         /**
+         * The constant VALUE.
+         */
+        public static final String VALUE = " VALUE ";
+        /**
          * The constant VALUE_COUNT.
          */
         public static final String VALUE_COUNT = " VALUE COUNT(1) ";

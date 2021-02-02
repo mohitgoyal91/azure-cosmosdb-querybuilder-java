@@ -23,18 +23,26 @@ import static com.github.mohitgoyal91.cosmosdbqueryutils.utilities.Constants.Ope
  */
 public class SelectQuery extends RestrictionExtractor implements AggregateExtractorMin {
 
-    private boolean isCount;
+    private SelectQueryType type;
     private Integer limit;
     private Columns columns = new Columns();
     private List<AggregateFunction> aggregateFunctions = new ArrayList<>();
     private List<GroupedRestriction> restrictions = new ArrayList();
     private Order order;
     private OffsetLimit offsetLimit;
+    private String valuePropertyName;
+
+    private enum SelectQueryType {
+        Standard,
+        Count,
+        Value
+    }
 
     /**
      * Creates a new Instance of a SelectQuery
      */
     public SelectQuery(){
+        this.type = SelectQueryType.Standard;
     }
 
     /**
@@ -43,7 +51,15 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
      * @return the boolean
      */
     public boolean isCount() {
-        return isCount;
+        return type == SelectQueryType.Count;
+    }
+
+    /**
+     * Is value boolean
+     * @return the boolean
+     */
+    public boolean isValue() {
+        return type == SelectQueryType.Value;
     }
 
     /**
@@ -88,6 +104,14 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
      */
     public OffsetLimit getOffsetLimit() {
         return offsetLimit;
+    }
+
+    /**
+     * Gets the property name associated with the VALUE clause
+     * @return the propertyName
+     */
+    public String getValuePropertyName() {
+        return valuePropertyName;
     }
 
     /**
@@ -235,7 +259,18 @@ public class SelectQuery extends RestrictionExtractor implements AggregateExtrac
      * @return current instance of SelectQuery
      */
     public SelectQuery count() {
-        this.isCount = true;
+        this.type = SelectQueryType.Count;
+        return this;
+    }
+
+    /**
+     * To specify if only the value of one property is required
+     * @param propertyName The name of the property
+     * @return current instance of SelectQuery
+     */
+    public SelectQuery valueOf(String propertyName) {
+        this.type = SelectQueryType.Value;
+        this.valuePropertyName = propertyName;
         return this;
     }
 
